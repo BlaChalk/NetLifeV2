@@ -1,7 +1,7 @@
 <template lang="pug">
-  #table
+  #table(@wheel.prevent="wheel")
     .cover(v-for="tableList in tableLists")
-      img(alt="" :src="tableList.img")
+      img(:src="tableList.img")
 </template>
 
 <script>
@@ -13,11 +13,11 @@ export default {
       tableLists: [
         {
           name: 'calculator',
-          img: '../assets/calculator.png'
+          img: '/img/calculator.png'
         },
         {
           name: 'chrome',
-          img: '../assets/chrome.png'
+          img: '/img/chrome.png'
         },
       ]
     };
@@ -27,14 +27,13 @@ export default {
       default: [0, 0]
     }
   },
-  watch: {
-    windowSize () {
-
-      TweenMax.to('.cover', 0.5, {
-        width: this.windowSize[0]/15,
-        height: this.windowSize[0]/15
+  methods: {
+    wheel(evt){
+      TweenMax.to('.cover', 0.8, {
+        width: '-=' + evt.deltaY/100 + 'vw',
+        height: '-=' + evt.deltaY/100 + 'vw',
       })
-    }
+    },
   }
 }
 </script>
@@ -48,10 +47,16 @@ export default {
     align-items: start
     width: 100%
     height: 100%
+    min-width: 50%
+    min-height: 50%
     background-color: #777
     .cover
-      width: 80px
-      height: 80px
+      width: 10vw
+      height: 10vw
+      min-width: 5vw
+      min-height: 5vw
+      max-width: 10vw
+      max-height: 10vw
       margin: 30px
       margin-bottom: 0px
       img
