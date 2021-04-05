@@ -1,7 +1,14 @@
 <template lang="pug">
-  #app
-    //- router-link(to="/")
-    <router-view/>
+#app
+  //- router-link(to="/")
+  <router-view/>
+  .swiper-container
+    .swiper-wrapper
+      .swiper-slide 首頁
+      .swiper-slide 第一
+      .swiper-slide 第二
+      .swiper-pagination
+      .swiper-scrollbar
 </template>
 
 <style lang="sass">
@@ -19,9 +26,15 @@ html, body
   background-color: #F6FFF8
   height: 100%
 
-#nav
-  a
-    color: #2c3e50
-    &.router-link-exact-active
-      color: #42b983
+.swiper-container
+  width: 15vw
+  height: 100vh
+  float: right
+  border: 1px solid #000
+  .swiper-slide
+    display: flex
+    justify-content: center
+    align-items: center
+    font-size: 2rem
+    color: #111
 </style>
