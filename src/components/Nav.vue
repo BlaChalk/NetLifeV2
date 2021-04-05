@@ -9,21 +9,21 @@
           a.nav-link(href='#')
             | Home 
             span.sr-only (current)
-        li.nav-item
-          a.nav-link(href='#') Link
-        li.nav-item.dropdown
-          a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
-            | Dropdown
-          .dropdown-menu(aria-labelledby='navbarDropdown')
-            a.dropdown-item(href='#') Action
-            a.dropdown-item(href='#') Another action
-            .dropdown-divider
-            a.dropdown-item(href='#') Something else here
-        li.nav-item
-          a.nav-link.disabled(href='#') Disabled
-      form.form-inline.my-2.my-lg-0
-        input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
-        button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
+        //- li.nav-item
+        //-   a.nav-link(href='#') Link
+        //- li.nav-item.dropdown
+        //-   a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+        //-     | Dropdown
+        //-   .dropdown-menu(aria-labelledby='navbarDropdown')
+        //-     a.dropdown-item(href='#') Action
+        //-     a.dropdown-item(href='#') Another action
+        //-     .dropdown-divider
+        //-     a.dropdown-item(href='#') Something else here
+        //- li.nav-item
+        //-   a.nav-link.disabled(href='#') Disabled
+      //- form.form-inline.my-2.my-lg-0
+      //-   input.form-control.mr-sm-2(type='search' placeholder='Search' aria-label='Search')
+      //-   button.btn.btn-outline-success.my-2.my-sm-0(type='submit') Search
 </template>
 
 <script>
@@ -33,6 +33,7 @@ export default {
 </script>
 
 <style lang="sass">
+  $em-size: 1em
   #nav
     position: fixed
     bottom: 0%

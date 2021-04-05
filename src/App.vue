@@ -16,6 +16,8 @@ html, body
   -moz-osx-font-smoothing: grayscale
   text-align: center
   // color: #2c3e50
+  background-color: #F6FFF8
+  height: 100%
 
 #nav
   a

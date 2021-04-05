@@ -25,7 +25,7 @@ export default {
   methods: {
     wheel(evt){
       TweenMax.to('#entry', 0.8, {
-        width: '-=' + evt.deltaY/10 + 'vw',
+        width: '-=' + evt.deltaY/10*(3/4) + 'vw',
         height: '-=' + evt.deltaY/10 + 'vh',
       })
       // this.windowSize[0] -= this.windowSize[0]*(evt.deltaY/1000)
@@ -41,15 +41,15 @@ export default {
 <style lang="sass">
   #entry
     position: absolute
-    border: 1px solid #000
-    width: 100vw
+    border: 3vw solid #eee
+    width: calc(100vw*(3/4))
     height: 100vh
-    min-width: 50vw
+    min-width: calc(50vw*(3/4))
     min-height: 50vh
-    max-width: 100vw
+    max-width: calc(100vw*(3/4))
     max-height: 100vh
-    left: 50%
+    left: 25%
     top: 50%
-    transform: translate(-50%, -50%)
+    transform: translate(-20%, -50%)
     background-color: #aaa
 </style>

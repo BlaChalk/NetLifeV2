@@ -51,12 +51,12 @@ export default {
     min-height: 50%
     background-color: #777
     .cover
-      width: 10vw
-      height: 10vw
-      min-width: 5vw
-      min-height: 5vw
-      max-width: 10vw
-      max-height: 10vw
+      width: 8vw
+      height: 8vw
+      min-width: 4vw
+      min-height: 4vw
+      max-width: 8vw
+      max-height: 8vw
       margin: 30px
       margin-bottom: 0px
       img
