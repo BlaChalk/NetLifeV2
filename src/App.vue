@@ -35,6 +35,13 @@ html, body
     display: flex
     justify-content: center
     align-items: center
-    font-size: 2rem
+    font-size: 1.2rem
+    cursor: pointer
     color: #111
+    &:hover
+      font-size: 1.7rem
+  .swiper-slide-active
+      font-weight: bold
+      font-size: 1.7rem
+
 </style>

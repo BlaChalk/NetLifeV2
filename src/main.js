@@ -29,8 +29,15 @@ new Vue({
 new Swiper ('.swiper-container', {
 
   direction: 'vertical',
-  slidesPerView: 4,
+  slideToClickedSlide: true,
+  centeredSlides: true,
+  slidesPerView: 7,
   
+  // Mousewheel
+  mousewheel: { // this method can't work
+    invert: true,
+  },
+
   // Pagination
   pagination: {
     el: '.swiper-pagination',
