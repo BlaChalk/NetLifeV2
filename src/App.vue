@@ -15,6 +15,7 @@
 html, body
   height: 100%
   margin: 0
+  overflow: hidden
 
 #app
   // border: 1px solid #000
@@ -25,7 +26,7 @@ html, body
   // color: #2c3e50
   background-color: #F6FFF8
   height: 100%
-
+  cursor: url(/img/cursor.png), auto
 .swiper-container
   width: 15vw
   height: 100vh
@@ -36,7 +37,7 @@ html, body
     justify-content: center
     align-items: center
     font-size: 1.2rem
-    cursor: pointer
+    cursor: url(/img/pointer.png), pointer
     color: #111
     &:hover
       font-size: 1.7rem
