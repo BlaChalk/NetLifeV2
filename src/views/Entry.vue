@@ -1,5 +1,6 @@
 <template lang="pug">
   #entry(@wheel.prevent="wheel")
+    img.table(src="../assets/entry/table.png")
     .computer
       img.screen(src="../assets/entry/screen.png")
       img.keyboard(src="../assets/entry/keyboard.png")
@@ -73,6 +74,10 @@ export default {
     background-color: #aaa
     img
       position: absolute
+    .table
+      width: 600%
+      left: -200%
+      top: 80%
     .computer
       .screen
         width: 100%
