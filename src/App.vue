@@ -28,10 +28,11 @@ html, body
   height: 100%
   cursor: url(/img/cursor.png), auto
 .swiper-container
-  width: 15vw
+  width: 10vw
   height: 100vh
   float: right
-  border: 1px solid #000
+  // border: 1px solid #000
+  background-color: rgba(250, 243, 221, 0.7)
   .swiper-slide
     display: flex
     justify-content: center
