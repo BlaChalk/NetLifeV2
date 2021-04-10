@@ -1,6 +1,12 @@
 <template lang="pug">
   #entry(@wheel.prevent="wheel")
-    img.computer(src="../assets/entry/computer.svg")
+    .computer
+      img.screen(src="../assets/entry/screen.png")
+      img.keyboard(src="../assets/entry/keyboard.png")
+      img.mouse(src="../assets/entry/mouse.png")
+      img.host(src="../assets/entry/host.png")
+      img.stereo_left(src="../assets/entry/stereo_left.png")
+      img.stereo_right(src="../assets/entry/stereo_right.png")
     img.photoFrame(src="../assets/entry/photoFrame.png")
     .todolists
       img.todolist.todolist1(src="../assets/entry/todolist1.png")
@@ -36,7 +42,7 @@ export default {
   methods: {
     wheel(evt){
       TweenMax.to('#entry', 0.8, {
-        width: '-=' + evt.deltaY/10*(3/4) + 'vw',
+        width: '-=' + evt.deltaY/10*(3/5) + 'vw',
         height: '-=' + evt.deltaY/10 + 'vh',
       })
       // this.windowSize[0] -= this.windowSize[0]*(evt.deltaY/1000)
@@ -53,29 +59,51 @@ export default {
   #entry
     position: absolute
     // border: 3vw solid #aaa
-    width: calc(100vw*(3/4))
+    width: calc(100vw*(3/5))
     height: 100vh
-    min-width: calc(20vw*(3/4))
-    min-height: 20vh
+    min-width: calc(35vw*(3/5))
+    min-height: 35vh
     // min-width: calc(50vw*(3/4))
     // min-height: 50vh
-    max-width: calc(100vw*(3/4))
+    max-width: calc(100vw*(3/5))
     max-height: 100vh
-    left: 25%
+    left: 40%
     top: 50%
-    transform: translate(-20%, -50%)
+    transform: translate(-40%, -50%)
     background-color: #aaa
     img
       position: absolute
     .computer
-      width: 280%
-      height: 280%
-      left: -55%
-      top: -55%
+      .screen
+        width: 100%
+        height: 100%
+        left: 0%
+      .keyboard
+        width: 116%
+        top: 110%
+        left: -8%
+      .mouse
+        width: 20%
+        top: 120%
+        left: 120%
+      .host
+        width: 45%
+        height: 105%
+        left: 100%
+      .stereo_left
+        width: 25%
+        height: 60%
+        top: 45%
+        left: -25%
+      .stereo_right
+        width: 25%
+        height: 60%
+        top: 45%
+        left: 145%
     .photoFrame
       width: 50%
-      left: -50%
-      top: -200%
+      left: -10%
+      top: -90%
       transform-origin: top
       animation: wiggle 2s infinite linear //  delay iteration-count direction fill-mode
       &:hover
@@ -95,16 +123,16 @@ export default {
     .todolists
       .todolist
         width: 30%
-        left: -80%
-        top: -50%
+        left: -60%
+        top: -40%
         &:hover
           width: 35%
           cursor: url(/img/pointer.png), pointer
       .todolist1
-        left: -120%
+        left: -100%
     .plant
       width: 80%
-      left: -150%
+      left: -130%
       top: 50%
       &:hover
         width: 90%
@@ -113,19 +141,18 @@ export default {
     .tissues
       .tissue
         width: 20%
-        left: -80%
-        top: 220%
+        left: -60%
+        top: 140%
       .tissue1
         width: 25%
-        left: -130%
-        top: 250%
+        left: -100%
+        top: 160%
     .lamp
-      width: 100%
-      width: 100%
-      left: 220%
+      width: 85%
+      left: 180%
       top: 10%
     .mug
       width: 30%
-      left: 180%
-      top: 230%
+      left: 150%
+      top: 130%
 </style>
