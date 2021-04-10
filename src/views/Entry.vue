@@ -76,17 +76,40 @@ export default {
       width: 50%
       left: -50%
       top: -200%
+      transform-origin: top
+      animation: wiggle 2s infinite linear //  delay iteration-count direction fill-mode
+      &:hover
+        animation: none
+        width: 55%
+        cursor: url(/img/pointer.png), pointer
+    @keyframes wiggle
+      0%
+        transform: rotate(0deg)
+      25%
+        transform: rotate(10deg)
+      75%
+        transform: rotate(-10deg)
+      100%
+        transform: rotate(0deg)
+          
     .todolists
       .todolist
         width: 30%
         left: -80%
         top: -50%
+        &:hover
+          width: 35%
+          cursor: url(/img/pointer.png), pointer
       .todolist1
         left: -120%
     .plant
-        width: 80%
-        left: -150%
-        top: 50%
+      width: 80%
+      left: -150%
+      top: 50%
+      &:hover
+        width: 90%
+        transform: translate(-5%, -5%)
+        cursor: url(/img/pointer.png), pointer
     .tissues
       .tissue
         width: 20%
