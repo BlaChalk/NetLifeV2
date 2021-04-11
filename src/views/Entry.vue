@@ -76,6 +76,7 @@ export default {
       position: absolute
     .table
       width: 600%
+      height: 450%
       left: -200%
       top: 80%
     .computer
@@ -154,8 +155,8 @@ export default {
         top: 160%
     .lamp
       width: 85%
-      left: 180%
-      top: 10%
+      left: 170%
+      top: 20%
     .mug
       width: 30%
       left: 150%
