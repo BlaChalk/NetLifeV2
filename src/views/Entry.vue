@@ -12,7 +12,7 @@
     .todolists
       img.todolist.todolist1(src="../assets/entry/todolist1.png")
       img.todolist.todolist2(src="../assets/entry/todolist2.png")
-    img.plant(src="../assets/entry//plant_growing.gif")
+    img.plant(src="../assets/entry//plant.png")
     .tissues
       img.tissue.tissue1(src="../assets/entry/tissue1.png")
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
@@ -149,14 +149,12 @@ $(function() {
     .plant
       position: absolute
       width: 80%
-      height: 68%
       left: -130%
       top: 50%
       // background-size: cover
       // background-image: url(../assets/entry/plant.png)
       &:hover
         width: 90%
-        height: 90%
         transform: translate(-5%, -20%)
         cursor: url(/img/pointer.png), pointer
       //   background-origin: border-box
