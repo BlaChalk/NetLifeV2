@@ -12,7 +12,7 @@
     .todolists
       img.todolist.todolist1(src="../assets/entry/todolist1.png")
       img.todolist.todolist2(src="../assets/entry/todolist2.png")
-    img.plant(src="../assets/entry/plant.png")
+    img.plant(src="../assets/entry//plant_growing.gif")
     .tissues
       img.tissue.tissue1(src="../assets/entry/tissue1.png")
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
@@ -53,6 +53,16 @@ export default {
     },
   }
 }
+$(function() {
+    $('.plant').hover(
+      function(){
+        let src = '/img/plant_growing.gif'
+        $(this).attr( "src", src.replace( /\.gif$/, ".gif?rnd=" + Math.floor(Math.random() * 100) + 1));
+      },  
+      function(){
+        $(this).attr('src', '/img/plant.png')
+    })
+});
 
 </script>
 
@@ -137,13 +147,20 @@ export default {
       .todolist1
         left: -100%
     .plant
+      position: absolute
       width: 80%
+      height: 68%
       left: -130%
       top: 50%
+      // background-size: cover
+      // background-image: url(../assets/entry/plant.png)
       &:hover
         width: 90%
-        transform: translate(-5%, -5%)
+        height: 90%
+        transform: translate(-5%, -20%)
         cursor: url(/img/pointer.png), pointer
+      //   background-origin: border-box
+      //   background-image: url(../assets/entry/plant_growing.gif)
     .tissues
       .tissue
         width: 20%
