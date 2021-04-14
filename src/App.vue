@@ -2,7 +2,7 @@
 #app
   //- router-link(to="/")
   <router-view/>
-  .swiper-container
+  //- .swiper-container
     .swiper-wrapper
       .swiper-slide 首頁
       .swiper-slide 第一
