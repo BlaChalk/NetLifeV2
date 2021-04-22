@@ -38,7 +38,7 @@ html, body
     100%
       background-position: 100% 100%
   height: 100%
-  cursor: url(/img/cursor.png), auto
+  cursor: url(~@/assets/cursor.png), auto
 .swiper-container
   width: 10vw
   height: 100vh
@@ -50,7 +50,7 @@ html, body
     justify-content: center
     align-items: center
     font-size: 1.2rem
-    cursor: url(/img/pointer.png), pointer
+    cursor: url(~@/assets/pointer.png), pointer
     color: #111
     &:hover
       font-size: 1.7rem

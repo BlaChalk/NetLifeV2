@@ -130,7 +130,7 @@ $(function() {
       &:hover
         animation: none
         width: 55%
-        cursor: url(/img/pointer.png), pointer
+        cursor: url(~@/assets/pointer.png), pointer
     @keyframes wiggle
       0%
         transform: rotate(0deg)
@@ -148,7 +148,7 @@ $(function() {
         top: -40%
         &:hover
           width: 35%
-          cursor: url(/img/pointer.png), pointer
+          cursor: url(~@/assets/pointer.png), pointer
       .todolist1
         left: -100%
     .plant
@@ -161,7 +161,7 @@ $(function() {
       &:hover
         width: 90%
         transform: translate(-5%, -20%)
-        cursor: url(/img/pointer.png), pointer
+        cursor: url(~@/assets/pointer.png), pointer
       //   background-origin: border-box
       //   background-image: url(../assets/entry/plant_growing.gif)
     .tissues
