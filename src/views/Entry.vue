@@ -19,7 +19,7 @@
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
     img.lamp(src="../assets/entry/lamp.png")
     img.mug(src="../assets/entry/mug.png")
-    //- Table(:windowSize="windowSize")
+    Table(:windowSize="windowSize")
     //- Nav
 </template>
 

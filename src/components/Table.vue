@@ -40,26 +40,31 @@ export default {
 
 <style lang="sass">
   #table
-    position: relative
+    position: absolute
     display: flex
     flex-direction: column
     justify-content: start
     align-items: start
-    width: 100%
-    height: 100%
-    min-width: 50%
-    min-height: 50%
-    background-color: #777
+    top: 25%
+    left: 20%
+    width: 60%
+    height: 45%
+    // background-color: rgba(white, 0.7)
     .cover
+      // border: 1px solid #000
+      display: flex
+      justify-content: center
+      align-items: center
+      left: 5%
+      top: 5%
       width: 8vw
       height: 8vw
-      min-width: 4vw
-      min-height: 4vw
+      min-width: 2vw
+      min-height: 2vw
       max-width: 8vw
       max-height: 8vw
-      margin: 30px
-      margin-bottom: 0px
       img
-        width: 100%
-        height: 100%
+        position: absolute
+        width: 12%
+        height: 20%
 </style>
