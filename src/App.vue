@@ -12,6 +12,10 @@
 </template>
 
 <style lang="sass">
+
+$color_blue_start: #011627
+$color_blue_end: #F6FFF8
+
 html, body
   height: 100%
   margin: 0
@@ -24,7 +28,14 @@ html, body
   -moz-osx-font-smoothing: grayscale
   text-align: center
   // color: #2c3e50
-  background-color: #F6FFF8
+  background: linear-gradient(20deg, $color_blue_start, $color_blue_end)
+  background-size: 100% 500%
+  animation: daylight 30s both 1
+  @keyframes daylight
+    0%
+      background-position: 100% 0%
+    100%
+      background-position: 100% 100%
   height: 100%
   cursor: url(/img/cursor.png), auto
 .swiper-container
