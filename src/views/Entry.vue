@@ -57,11 +57,12 @@ export default {
 $(function() {
     $('.plant').hover(
       function(){
-        let src = '/img/plant_growing.gif'
+        let src = process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/plant_growing.gif' : '/img/plant_growing.gif'
         $(this).attr( "src", src.replace( /\.gif$/, ".gif?rnd=" + Math.floor(Math.random() * 100) + 1));
       },  
       function(){
-        $(this).attr('src', '/img/plant.png')
+        let plant_src = process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/plant.png' : '/img/plant.png'
+        $(this).attr('src', plant_src)
     })
 });
 

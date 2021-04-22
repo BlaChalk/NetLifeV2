@@ -16,11 +16,11 @@ export default {
       tableLists: [
         {
           name: 'calculator',
-          img: '/img/calculator.png'
+          img: process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/calculator.png' : '/img/calculator.png'
         },
         {
           name: 'chrome',
-          img: '/img/chrome.png'
+          img: process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/chrome.png' : '/img/chrome.png'
         },
       ]
     };
