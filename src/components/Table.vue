@@ -2,6 +2,9 @@
   #table(@wheel.prevent="wheel")
     .cover(v-for="tableList in tableLists")
       img(:src="tableList.img")
+    img.window_simple(src="../assets/entry/inside_Screen/window_simple.png")
+    img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
+      
 </template>
 
 <script>
@@ -67,4 +70,12 @@ export default {
         position: absolute
         width: 12%
         height: 20%
+    .window_simple
+      width: 60%
+      left: 20%
+      top: 10%
+    .toolbox
+      position: absolute
+      bottom: 0
+      width: 100%
 </style>
