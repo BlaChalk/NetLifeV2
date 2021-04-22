@@ -1,6 +1,7 @@
 <template lang="pug">
   #entry(@wheel.prevent="wheel")
     img.table(src="../assets/entry/table.png")
+    img.window(src="../assets/entry/window.png")
     .computer
       img.screen(src="../assets/entry/screen.png")
       img.keyboard(src="../assets/entry/keyboard.png")
@@ -89,6 +90,10 @@ $(function() {
       height: 450%
       left: -200%
       top: 80%
+    .window
+      width: 150%
+      left: 100%
+      top: -120%
     .computer
       .screen
         width: 100%
