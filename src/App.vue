@@ -13,8 +13,9 @@
 
 <style lang="sass">
 
-$color_blue_start: #011627
-$color_blue_end: #F6FFF8
+$color_blue_start: #F6FFF8
+$color_blue_middle: #011627
+$color_blue_end: #003049
 
 html, body
   height: 100%
@@ -28,9 +29,9 @@ html, body
   -moz-osx-font-smoothing: grayscale
   text-align: center
   // color: #2c3e50
-  background: linear-gradient(20deg, $color_blue_start, $color_blue_end)
-  background-size: 100% 500%
-  animation: daylight 30s both 1
+  background: linear-gradient(20deg,$color_blue_start 0%, $color_blue_end 30%, $color_blue_middle 70%, $color_blue_start 100%)
+  background-size: 100% 2000%
+  animation: daylight 100s both infinite
   @keyframes daylight
     0%
       background-position: 100% 0%
