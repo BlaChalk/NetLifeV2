@@ -2,8 +2,12 @@
   #table(@wheel.prevent="wheel")
     .cover(v-for="tableList in tableLists")
       img(:src="tableList.img" @click="showDetail(tableList)")
-    .pop_up_window
-      img.window_simple(src="../assets/entry/inside_Screen/window_simple.png")
+    .pop_up_window(draggable="true")
+      img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
+      .features
+        img.i(src="../assets/entry/inside_Screen/i.png")
+        img.o(src="../assets/entry/inside_Screen/o.png")
+        img.x(src="../assets/entry/inside_Screen/x.png")
       .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
       
@@ -54,7 +58,7 @@ export default {
 
 <style lang="sass">
   #table
-    position: absolute
+    position: relative
     display: flex
     flex-direction: column
     justify-content: start
@@ -65,28 +69,42 @@ export default {
     height: 45%
     // background-color: rgba(white, 0.7)
     .cover
-      // border: 1px solid #000
+      // display: none
+      position: relative
       display: flex
       justify-content: center
       align-items: center
       left: 5%
       top: 5%
-      width: 8vw
-      height: 8vw
+      width: 7vw
+      height: 7vw
       min-width: 2vw
       min-height: 2vw
-      max-width: 8vw
-      max-height: 8vw
+      max-width: 7vw
+      max-height: 7vw
+      margin-top: 1vw
       img
-        position: absolute
-        width: 12%
-        height: 20%
+        display: none
+        // position: absolute
+        width: 100%
+        // height: 10%
+        cursor: url(~@/assets/pointer.png), pointer
     .pop_up_window
       position: absolute
       width: 70%
       left: 20%
       top: 10%
       display: none
+      .features
+        position: absolute
+        right: 0%
+        top: 0%
+        height: 2vw
+        width: 8vw
+        .i, .o, .x
+          position: relative
+          width: 1vw
+          margin: 0vw 0.5vw
       .window_simple
         position: relative
         width: 100%
@@ -98,6 +116,7 @@ export default {
         text-align: left
         color: #222
     .toolbox
+      display: none
       position: absolute
       bottom: 0
       width: 100%
