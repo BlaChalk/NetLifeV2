@@ -19,7 +19,7 @@
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
     img.lamp(src="../assets/entry/lamp.png")
     img.mug(src="../assets/entry/mug.png")
-    Table(:windowSize="windowSize")
+    Table(:windowSize="windowSize" @windowZoomIn="selfZoomIn")
     //- Nav
 </template>
 
@@ -52,6 +52,12 @@ export default {
 
       // this.$forceUpdate()
     },
+    selfZoomIn(val){
+      TweenMax.to('#entry', 0.8, {
+        width: val*(3/5) + 'vw',
+        height: val + 'vh',
+      })
+    }
   }
 }
 $(function() {
@@ -78,8 +84,8 @@ $(function() {
     min-height: 35vh
     // min-width: calc(50vw*(3/4))
     // min-height: 50vh
-    max-width: calc(100vw*(3/5))
-    max-height: 100vh
+    max-width: calc(150vw*(3/5))
+    max-height: 150vh
     left: 40%
     top: 50%
     transform: translate(-40%, -50%)

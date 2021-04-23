@@ -34,7 +34,8 @@ export default {
           detail: '這是測驗用文字2'
         },
       ],
-      currentTableList: null
+      currentTableList: null,
+      tableZoomIn: 150
     };
   },
   props: {
@@ -53,6 +54,7 @@ export default {
       $('.cover').show()
       $('.icon').show()
       $('.login').hide()
+      this.$emit('windowZoomIn', this.tableZoomIn)
     },
     showDetail(tableList){
       this.currentTableList = tableList
