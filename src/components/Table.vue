@@ -1,8 +1,10 @@
 <template lang="pug">
   #table(@wheel.prevent="wheel")
     .cover(v-for="tableList in tableLists")
-      img(:src="tableList.img")
-    img.window_simple(src="../assets/entry/inside_Screen/window_simple.png")
+      img(:src="tableList.img" @click="showDetail(tableList)")
+    .pop_up_window
+      img.window_simple(src="../assets/entry/inside_Screen/window_simple.png")
+      .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
       
 </template>
@@ -16,13 +18,16 @@ export default {
       tableLists: [
         {
           name: 'calculator',
-          img: process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/calculator.png' : '/img/calculator.png'
+          img: process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/calculator.png' : '/img/calculator.png',
+          detail: '這是測驗用文字1'
         },
         {
           name: 'chrome',
-          img: process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/chrome.png' : '/img/chrome.png'
+          img: process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/chrome.png' : '/img/chrome.png',
+          detail: '這是測驗用文字2'
         },
-      ]
+      ],
+      currentTableList: null
     };
   },
   props: {
@@ -37,6 +42,12 @@ export default {
         height: '-=' + evt.deltaY/100 + 'vw',
       })
     },
+    showDetail(tableList){
+      this.currentTableList = tableList
+      $('.pop_up_window').show()
+      // $('.pop_up_window').toggle()
+      $('.message').text(this.currentTableList.detail)
+    }
   }
 }
 </script>
@@ -70,10 +81,22 @@ export default {
         position: absolute
         width: 12%
         height: 20%
-    .window_simple
-      width: 60%
+    .pop_up_window
+      position: absolute
+      width: 70%
       left: 20%
       top: 10%
+      display: none
+      .window_simple
+        position: relative
+        width: 100%
+      .message
+        position: relative
+        width: 80%
+        left: 2.5vw
+        top: -10vw
+        text-align: left
+        color: #eee
     .toolbox
       position: absolute
       bottom: 0
