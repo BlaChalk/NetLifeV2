@@ -1,7 +1,10 @@
 <template lang="pug">
   #table(@wheel.prevent="wheel")
+    .login
+      img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
+      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable()")
     .cover(v-for="tableList in tableLists")
-      img(:src="tableList.img" @click="showDetail(tableList)")
+      img.icon(:src="tableList.img" @click="showDetail(tableList)")
     .pop_up_window(draggable="true")
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
@@ -46,6 +49,11 @@ export default {
         height: '-=' + evt.deltaY/100 + 'vw',
       })
     },
+    showTable(){
+      $('.cover').show()
+      $('.icon').show()
+      $('.login').hide()
+    },
     showDetail(tableList){
       this.currentTableList = tableList
       $('.pop_up_window').show()
@@ -67,7 +75,26 @@ export default {
     left: 20%
     width: 60%
     height: 45%
-    // background-color: rgba(white, 0.7)
+    background-color: rgba(white, 0.1)
+    .login
+      width: 100%
+      height: 100%
+      position: relative
+      .user_sticker
+        position: absolute
+        width: 10vw
+        left: 50%
+        top: 20%
+        transform: translateX(-50%)
+      .login_button
+        position: absolute
+        width: 20vw
+        left: 50%
+        top: 120%
+        transform: translateX(-50%)
+        &:hover
+          cursor: url(~@/assets/pointer.png), pointer
+          width: 22vw
     .cover
       // display: none
       position: relative
@@ -83,7 +110,7 @@ export default {
       max-width: 7vw
       max-height: 7vw
       margin-top: 1vw
-      img
+      .icon
         display: none
         // position: absolute
         width: 100%
