@@ -18,12 +18,12 @@ export default {
       tableLists: [
         {
           name: 'calculator',
-          img: process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/calculator.png' : '/img/calculator.png',
+          img: require('@/assets/calculator.png'),
           detail: '這是測驗用文字1'
         },
         {
           name: 'chrome',
-          img: process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/chrome.png' : '/img/chrome.png',
+          img: require('@/assets/chrome.png'),
           detail: '這是測驗用文字2'
         },
       ],
@@ -96,7 +96,7 @@ export default {
         left: 2.5vw
         top: -10vw
         text-align: left
-        color: #eee
+        color: #222
     .toolbox
       position: absolute
       bottom: 0
