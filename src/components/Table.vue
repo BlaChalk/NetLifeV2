@@ -13,6 +13,8 @@
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail()")
       .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
+    img.start_panel(src="../assets/entry/inside_Screen/start_panel.png" :class="{isPanelOpen: isPanelOpen}")
+    .start_button(@click="isPanelOpen=!isPanelOpen")
       
 </template>
 
@@ -35,7 +37,8 @@ export default {
         },
       ],
       currentTableList: null,
-      tableZoomIn: 150
+      tableZoomIn: 150,
+      isPanelOpen: true
     };
   },
   props: {
@@ -55,6 +58,7 @@ export default {
       $('.icon').show()
       $('.toolbox').show()
       $('.login').hide()
+      $('.start_button').show()
       this.$emit('windowZoomIn', this.tableZoomIn)
     },
     showDetail(tableList){
@@ -160,4 +164,23 @@ export default {
       position: absolute
       bottom: 0
       width: 100%
+    .start_panel
+      position: absolute
+      user-select: none
+      width: 12vw
+      bottom: 3.7vw
+      &.isPanelOpen
+        display: none
+    .start_button
+      display: none
+      background-color: #666
+      position: absolute
+      user-select: none
+      bottom: 1vw
+      width: 4vw
+      height: 1.5vw
+      left: 1.5vw
+      &:hover
+        background-color: #333
+        cursor: url(~@/assets/pointer.png), pointer
 </style>
