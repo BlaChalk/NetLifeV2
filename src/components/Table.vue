@@ -8,9 +8,9 @@
     .pop_up_window(draggable="true")
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
-        img.i(src="../assets/entry/inside_Screen/i.png")
-        img.o(src="../assets/entry/inside_Screen/o.png")
-        img.x(src="../assets/entry/inside_Screen/x.png")
+        img.i(src="../assets/entry/inside_Screen/i.svg")
+        img.o(src="../assets/entry/inside_Screen/o.svg")
+        img.x(src="../assets/entry/inside_Screen/x.svg")
       .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
       
@@ -53,6 +53,7 @@ export default {
     showTable(){
       $('.cover').show()
       $('.icon').show()
+      $('.toolbox').show()
       $('.login').hide()
       this.$emit('windowZoomIn', this.tableZoomIn)
     },
@@ -128,12 +129,19 @@ export default {
         position: absolute
         right: 0%
         top: 0%
-        height: 2vw
-        width: 8vw
+        height: 3vw
+        width: 12vw
         .i, .o, .x
           position: relative
-          width: 1vw
-          margin: 0vw 0.5vw
+          width: 1.5vw
+          height: 1.5vw
+          margin: 0.8vw 0.75vw
+          background-color: #eeeeee
+          &:hover
+            background-color: #BCB8B1
+            cursor: url(~@/assets/pointer.png), pointer
+        .x:hover
+          background-color: #DD1155
       .window_simple
         position: relative
         width: 100%
