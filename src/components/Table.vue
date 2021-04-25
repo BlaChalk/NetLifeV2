@@ -10,7 +10,7 @@
       .features
         img.i(src="../assets/entry/inside_Screen/i.svg")
         img.o(src="../assets/entry/inside_Screen/o.svg")
-        img.x(src="../assets/entry/inside_Screen/x.svg")
+        img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail()")
       .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
       
@@ -62,6 +62,9 @@ export default {
       $('.pop_up_window').show()
       // $('.pop_up_window').toggle()
       $('.message').text(this.currentTableList.detail)
+    },
+    closeDetail(){
+      $('.pop_up_window').hide()
     }
   }
 }
@@ -148,8 +151,8 @@ export default {
       .message
         position: relative
         width: 80%
-        left: 2.5vw
-        top: -10vw
+        left: 5vw
+        top: -15vw
         text-align: left
         color: #222
     .toolbox
