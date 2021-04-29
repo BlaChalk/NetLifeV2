@@ -1,8 +1,8 @@
 <template lang="pug">
-  #table(@wheel.prevent="wheel")
+  #table
     .login
       img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
-      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable()")
+      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin()")
     .cover(v-for="tableList in tableLists")
       img.icon(:src="tableList.img" @click="showDetail(tableList)")
     .pop_up_window(draggable="true")
@@ -13,7 +13,10 @@
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail()")
       .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
-    img.start_panel(src="../assets/entry/inside_Screen/start_panel.png" :class="{isPanelOpen: isPanelOpen}")
+    .startFunction(:class="{isPanelOpen: isPanelOpen}")
+      img.start_panel(src="../assets/entry/inside_Screen/start_panel.png")
+      img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen()")
+      img.turnOffButton.shutDown(src="../assets/entry/inside_Screen/shutDown.png" @click="shuDownScreen()")
     .start_button(@click="isPanelOpen=!isPanelOpen")
       
 </template>
@@ -58,9 +61,22 @@ export default {
       $('.cover').show()
       $('.icon').show()
       $('.toolbox').show()
-      $('.login').hide()
       $('.start_button').show()
       this.$emit('windowZoomIn', this.tableZoomIn)
+    },
+    hideTable(){
+      $('.cover').hide()
+      $('.icon').hide()
+      $('.toolbox').hide()
+      $('.start_button').hide()
+    },
+    showLogin(){
+      setTimeout(() => {
+        $('.login').show().css('height', '25vh')
+      }, 800);
+    },
+    hideLogin(){
+      $('.login').hide()
     },
     showDetail(tableList){
       this.currentTableList = tableList
@@ -84,9 +100,23 @@ export default {
     },
     turnOffScreen(){
       $('#table').hide()
+      this.hideLogin()
     },
     turnOnScreen(){
       $('#table').show()
+      this.showLogin()
+    },
+    reStartScreen(){
+      this.$emit('reStartScreen')
+      this.isPanelOpen = !this.isPanelOpen
+      this.hideTable()
+      this.showLogin()
+    },
+    shuDownScreen(){
+      this.$emit('shuDownScreen')
+      this.isPanelOpen = !this.isPanelOpen
+      this.hideTable()
+      this.hideLogin()
     }
   }
 }
@@ -182,13 +212,23 @@ export default {
       position: absolute
       bottom: 0
       width: 100%
-    .start_panel
-      position: absolute
-      user-select: none
-      width: 12vw
-      bottom: 3.7vw
+    .startFunction
       &.isPanelOpen
         display: none
+      .start_panel
+        position: absolute
+        user-select: none
+        width: 12vw
+        bottom: 3.7vw
+      .turnOffButton
+        width: 3vw
+        left: 3vw
+        bottom: 5vw
+        cursor: url(~@/assets/pointer.png), pointer
+        &:hover
+          background-color: #333
+      .shutDown
+        left: 7vw
     .start_button
       display: none
       background-color: #666

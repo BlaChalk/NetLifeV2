@@ -1,5 +1,5 @@
 <template lang="pug">
-  #entry(@wheel.prevent="wheel")
+  #entry
     img.table(src="../assets/entry/table.png")
     img.window(src="../assets/entry/window.png")
     .computer
@@ -24,7 +24,7 @@
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
     img.lamp(src="../assets/entry/lamp.png")
     img.mug(src="../assets/entry/mug.png")
-    Table(ref="table" :windowSize="windowSize" @windowZoomIn="selfZoomIn")
+    Table(ref="table" :windowSize="windowSize" @windowZoomIn="selfZoomIn" @reStartScreen="zoomInScreen" @shuDownScreen="closeScreenAndZoomOut")
     //- Nav
 </template>
 
