@@ -5,6 +5,7 @@
       img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin()")
     .cover(v-for="tableList in tableLists")
       img.icon(:src="tableList.img" @click="showDetail(tableList)")
+      .name {{ tableList.name }}
     .pop_up_window(draggable="true")
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
@@ -29,13 +30,18 @@ export default {
     return {
       tableLists: [
         {
-          name: 'calculator',
-          img: require('@/assets/calculator.png'),
+          name: '本機',
+          img: require('@/assets/entry/inside_Screen/PC.png'),
           detail: '這是測驗用文字1'
         },
         {
-          name: 'chrome',
-          img: require('@/assets/chrome.png'),
+          name: '檔案總管',
+          img: require('@/assets/entry/inside_Screen/folder.png'),
+          detail: '這是測驗用文字2'
+        },
+        {
+          name: '資源回收桶',
+          img: require('@/assets/entry/inside_Screen/RecycleBin.png'),
           detail: '這是測驗用文字2'
         },
       ],
@@ -60,6 +66,7 @@ export default {
     showTable(){
       $('.cover').show()
       $('.icon').show()
+      $('.name').show()
       $('.toolbox').show()
       $('.start_button').show()
       this.$emit('windowZoomIn', this.tableZoomIn)
@@ -67,8 +74,10 @@ export default {
     hideTable(){
       $('.cover').hide()
       $('.icon').hide()
+      $('.name').show()
       $('.toolbox').hide()
       $('.start_button').hide()
+      $('.pop_up_window').hide()
     },
     showLogin(){
       setTimeout(() => {
@@ -154,26 +163,27 @@ export default {
           cursor: url(~@/assets/pointer.png), pointer
           width: 22vw
     .cover
-      // display: none
       position: relative
-      display: flex
+      display: flex-block
       justify-content: center
       align-items: center
-      left: 5%
-      top: 5%
-      width: 7vw
-      height: 7vw
-      min-width: 2vw
-      min-height: 2vw
-      max-width: 7vw
-      max-height: 7vw
-      margin-top: 1vw
+      left: 4vw
+      width: 5vw
+      height: 5vw
+      margin-top: 3.5vw
+      cursor: url(~@/assets/pointer.png), pointer
       .icon
         display: none
-        // position: absolute
+        position: relative
         width: 100%
-        // height: 10%
-        cursor: url(~@/assets/pointer.png), pointer
+        height: 100%
+      .name
+        display: none
+        position: relative
+        width: 100%
+        font-size: 14px
+        margin-top: 1vh
+        color: #fff
     .pop_up_window
       position: absolute
       width: 70%
@@ -224,9 +234,11 @@ export default {
         width: 3vw
         left: 3vw
         bottom: 5vw
+        opacity: 0.8
         cursor: url(~@/assets/pointer.png), pointer
         &:hover
           background-color: #333
+          opacity: 1
       .shutDown
         left: 7vw
     .start_button
