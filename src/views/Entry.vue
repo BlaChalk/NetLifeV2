@@ -3,7 +3,7 @@
     img.table(src="../assets/entry/table.png")
     img.window(src="../assets/entry/window.png")
     .computer
-      img.screen(src="../assets/entry/screen.png" @click="zoomInScreen()" :class="{isHoverScreen: isHoverScreen}")
+      img.screen(src="../assets/entry/screen.png" :class="{isHoverScreen: isHoverScreen}")
       .button
         img.down(src="../assets/entry/down.png" @click="setScreenOpacityDown()")
         img.up(src="../assets/entry/up.png"  @click="setScreenOpacityUp()")
@@ -82,6 +82,12 @@ export default {
       }, 1000);
       $('.screen').css('cursor', process.env.NODE_ENV === 'production' ? 'url(/NetLifeV2/img/pointer.png), pointer' : 'url(/img/pointer.png), pointer')
       
+      let screen = document.querySelector('.screen')
+      let _this = this
+
+      screen.addEventListener('click', function () {
+        _this.zoomInScreen()
+      })
     },
     zoomInScreen(){
       setTimeout(() => {
