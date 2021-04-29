@@ -146,18 +146,21 @@ export default {
     .login
       width: 100%
       height: 100%
+      display: block
       position: relative
       .user_sticker
+        display: block
         position: absolute
         width: 10vw
         left: 50%
-        top: 20%
+        top: 50%
         transform: translateX(-50%)
       .login_button
+        display: block
         position: absolute
         width: 20vw
         left: 50%
-        top: 120%
+        top: 190%
         transform: translateX(-50%)
         &:hover
           cursor: url(~@/assets/pointer.png), pointer
