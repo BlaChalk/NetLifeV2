@@ -129,10 +129,10 @@ export default {
     flex-direction: column
     justify-content: start
     align-items: start
-    top: 25%
+    top: 20%
     left: 20%
     width: 60%
-    height: 45%
+    height: 50%
     background-color: rgba(white, 0.1)
     .login
       width: 100%
