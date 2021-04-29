@@ -69,6 +69,8 @@ export default {
       $('.name').show()
       $('.toolbox').show()
       $('.start_button').show()
+      $('.user_sticker').css('top', '20%')
+      $('.login_button').css('top', '120%')
       this.$emit('windowZoomIn', this.tableZoomIn)
     },
     hideTable(){
