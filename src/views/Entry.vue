@@ -77,7 +77,9 @@ export default {
         width: 35*(3/5) + 'vw' ,
         height: 35 + 'vh'
       })
-      this.isHoverScreen = true
+      setTimeout(() => {
+        this.isHoverScreen = true
+      }, 1000);
       $('.screen').css('cursor', process.env.NODE_ENV === 'production' ? 'url(/NetLifeV2/img/pointer.png), pointer' : 'url(/img/pointer.png), pointer')
       
     },
@@ -88,6 +90,7 @@ export default {
         width: 100*(3/5) + 'vw' ,
         height: 100 + 'vh'
       })
+      this.isHoverScreen = false
       $('.screen').css('cursor', process.env.NODE_ENV === 'production' ? 'url(/NetLifeV2/img/cursor.png), auto' : 'url(/img/cursor.png), auto')
     }
   }
