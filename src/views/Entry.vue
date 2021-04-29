@@ -71,7 +71,7 @@ export default {
       this.$refs.table.screenOpacityDown()
     },
     closeScreenAndZoomOut(){
-      $('.button').hide()
+      $('.button').hide().css('opacity', '0')
       this.$refs.table.turnOffScreen()
       TweenMax.to('#entry', 0.8, {
         width: 35*(3/5) + 'vw' ,
@@ -84,7 +84,12 @@ export default {
       
     },
     zoomInScreen(){
-      $('.button').show()
+      setTimeout(() => {
+        $('.button').show()
+        TweenMax.to('.button', 0.8, {
+          opacity: 1
+        })
+      }, 200);
       this.$refs.table.turnOnScreen()
       TweenMax.to('#entry', 0.8, {
         width: 100*(3/5) + 'vw' ,
