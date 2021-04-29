@@ -82,8 +82,11 @@ export default {
         opacity: '-=' + this.screenOpacityAlt
       })
     },
-    closeScreen(){
+    turnOffScreen(){
       $('#table').hide()
+    },
+    turnOnScreen(){
+      $('#table').show()
     }
   }
 }

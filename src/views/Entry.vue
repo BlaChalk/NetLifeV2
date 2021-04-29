@@ -3,7 +3,7 @@
     img.table(src="../assets/entry/table.png")
     img.window(src="../assets/entry/window.png")
     .computer
-      img.screen(src="../assets/entry/screen.png")
+      img.screen(src="../assets/entry/screen.png" @click="zoomInScreen()" :class="{isHoverScreen: isHoverScreen}")
       .button
         img.down(src="../assets/entry/down.png" @click="setScreenOpacityDown()")
         img.up(src="../assets/entry/up.png"  @click="setScreenOpacityUp()")
@@ -37,6 +37,7 @@ export default {
   data() {
     return {
       windowSize: [],
+      isHoverScreen: false
     }
   },
   // mounted:function() {
@@ -71,11 +72,23 @@ export default {
     },
     closeScreenAndZoomOut(){
       $('.button').hide()
-      this.$refs.table.closeScreen()
+      this.$refs.table.turnOffScreen()
       TweenMax.to('#entry', 0.8, {
         width: 35*(3/5) + 'vw' ,
         height: 35 + 'vh'
       })
+      this.isHoverScreen = true
+      $('.screen').css('cursor', process.env.NODE_ENV === 'production' ? 'url(/NetLifeV2/img/pointer.png), pointer' : 'url(/img/pointer.png), pointer')
+      
+    },
+    zoomInScreen(){
+      $('.button').show()
+      this.$refs.table.turnOnScreen()
+      TweenMax.to('#entry', 0.8, {
+        width: 100*(3/5) + 'vw' ,
+        height: 100 + 'vh'
+      })
+      $('.screen').css('cursor', process.env.NODE_ENV === 'production' ? 'url(/NetLifeV2/img/cursor.png), auto' : 'url(/img/cursor.png), auto')
     }
   }
 }
@@ -125,6 +138,11 @@ $(function() {
         width: 100%
         height: 100%
         left: 0%
+        &.isHoverScreen
+          &:hover
+            width: 110%
+            height: 110%
+            transform: translate(-5%, -5%)
       .button
         display: inline-block
         img
