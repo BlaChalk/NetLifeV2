@@ -81,6 +81,9 @@ export default {
       TweenMax.to('#table', 0.5, {
         opacity: '-=' + this.screenOpacityAlt
       })
+    },
+    closeScreen(){
+      $('#table').hide()
     }
   }
 }

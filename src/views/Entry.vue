@@ -8,7 +8,7 @@
         img.down(src="../assets/entry/down.png" @click="setScreenOpacityDown()")
         img.up(src="../assets/entry/up.png"  @click="setScreenOpacityUp()")
         img.menu(src="../assets/entry/menu.png")
-        img.screen_button(src="../assets/entry/screen_button.png")
+        img.screen_button(src="../assets/entry/screen_button.png" @click="closeScreenAndZoomOut()")
       img.keyboard(src="../assets/entry/keyboard.png")
       img.mouse(src="../assets/entry/mouse.png")
       img.host(src="../assets/entry/host.png")
@@ -68,6 +68,14 @@ export default {
     },
     setScreenOpacityDown(){
       this.$refs.table.screenOpacityDown()
+    },
+    closeScreenAndZoomOut(){
+      $('.button').hide()
+      this.$refs.table.closeScreen()
+      TweenMax.to('#entry', 0.8, {
+        width: 35*(3/5) + 'vw' ,
+        height: 35 + 'vh'
+      })
     }
   }
 }
