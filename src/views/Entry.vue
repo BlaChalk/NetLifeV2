@@ -4,6 +4,11 @@
     img.window(src="../assets/entry/window.png")
     .computer
       img.screen(src="../assets/entry/screen.png")
+      .button
+        img.down(src="../assets/entry/down.png" @click="setScreenOpacityDown()")
+        img.up(src="../assets/entry/up.png"  @click="setScreenOpacityUp()")
+        img.menu(src="../assets/entry/menu.png")
+        img.screen_button(src="../assets/entry/screen_button.png")
       img.keyboard(src="../assets/entry/keyboard.png")
       img.mouse(src="../assets/entry/mouse.png")
       img.host(src="../assets/entry/host.png")
@@ -19,7 +24,7 @@
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
     img.lamp(src="../assets/entry/lamp.png")
     img.mug(src="../assets/entry/mug.png")
-    Table(:windowSize="windowSize" @windowZoomIn="selfZoomIn")
+    Table(ref="table" :windowSize="windowSize" @windowZoomIn="selfZoomIn")
     //- Nav
 </template>
 
@@ -31,7 +36,7 @@ export default {
   name: 'entry',
   data() {
     return {
-      windowSize: []
+      windowSize: [],
     }
   },
   // mounted:function() {
@@ -57,6 +62,12 @@ export default {
         width: val*(3/5) + 'vw',
         height: val + 'vh',
       })
+    },
+    setScreenOpacityUp(){
+      this.$refs.table.screenOpacityUp()
+    },
+    setScreenOpacityDown(){
+      this.$refs.table.screenOpacityDown()
     }
   }
 }
@@ -106,6 +117,22 @@ $(function() {
         width: 100%
         height: 100%
         left: 0%
+      .button
+        display: inline-block
+        img
+          width: 5vw
+          height: 3vw
+          top: 85%
+          &:hover
+            cursor: url(~@/assets/pointer.png), pointer
+            background-color: #333
+            opacity: 0.5
+        .down
+          left: 15%
+        .up
+          left: 31%
+        .screen_button
+          left: 73%
       .keyboard
         width: 116%
         top: 110%

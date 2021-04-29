@@ -38,6 +38,7 @@ export default {
       ],
       currentTableList: null,
       tableZoomIn: 150,
+      screenOpacityAlt: 0.2,
       isPanelOpen: true
     };
   },
@@ -69,6 +70,17 @@ export default {
     },
     closeDetail(){
       $('.pop_up_window').hide()
+    },
+    screenOpacityUp(){
+      TweenMax.to('#table', 0.5, {
+        opacity: '+=' + this.screenOpacityAlt
+      })
+    },
+    screenOpacityDown(){
+      console.log('I am work.')
+      TweenMax.to('#table', 0.5, {
+        opacity: '-=' + this.screenOpacityAlt
+      })
     }
   }
 }
