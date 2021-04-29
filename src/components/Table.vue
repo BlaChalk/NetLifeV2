@@ -64,9 +64,11 @@ export default {
       })
     },
     showTable(){
-      $('.cover').show()
-      $('.icon').show()
-      $('.name').show()
+      setTimeout(() => {
+        $('.cover').show()
+        $('.icon').show()
+        $('.name').show()
+      }, 800);
       $('.toolbox').show()
       $('.start_button').show()
       $('.user_sticker').css('top', '20%')
