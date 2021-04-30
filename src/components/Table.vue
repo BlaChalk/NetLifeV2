@@ -9,11 +9,14 @@
     .pop_up_window(draggable="true")
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
-        img.i(src="../assets/entry/inside_Screen/i.svg")
+        img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail($event)")
         img.o(src="../assets/entry/inside_Screen/o.svg")
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail()")
       .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
+    .thumbnailList(v-show="isThumbnail")
+      .openedThumbnail(v-for="(thumbnail, key) in currentTableList")
+        img(:id="key" :src="thumbnail.thumbnail")
     .startFunction(:class="{isPanelOpen: isPanelOpen}")
       img.start_panel(src="../assets/entry/inside_Screen/start_panel.png")
       img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen()")
@@ -30,22 +33,29 @@ export default {
     return {
       tableLists: [
         {
+          number: '1',
           name: '本機',
           img: require('@/assets/entry/inside_Screen/PC.png'),
-          detail: '這是測驗用文字1'
+          thumbnail: require('@/assets/entry/inside_Screen/PC_thumbnail.png'),
+          detail: '這是畚箕'
         },
         {
+          number: '2',
           name: '檔案總管',
           img: require('@/assets/entry/inside_Screen/folder.png'),
-          detail: '這是測驗用文字2'
+          thumbnail: require('@/assets/entry/inside_Screen/folder_thumbnail.png'),
+          detail: '這是總管'
         },
         {
+          number: '3',
           name: '資源回收桶',
           img: require('@/assets/entry/inside_Screen/RecycleBin.png'),
-          detail: '這是測驗用文字2'
+          thumbnail: require('@/assets/entry/inside_Screen/recycleBin_thumbnail.png'),
+          detail: '這是回收桶'
         },
       ],
-      currentTableList: null,
+      currentTableList: [],
+      isThumbnail: true,
       tableZoomIn: 150,
       screenOpacityAlt: 0.2,
       isPanelOpen: true
@@ -68,11 +78,10 @@ export default {
         $('.cover').show()
         $('.icon').show()
         $('.name').show()
+        $('.thumbnailList').css('display', 'flex')
       }, 800);
       $('.toolbox').show()
       $('.start_button').show()
-      $('.user_sticker').css('top', '20%')
-      $('.login_button').css('top', '120%')
       this.$emit('windowZoomIn', this.tableZoomIn)
     },
     hideTable(){
@@ -84,6 +93,8 @@ export default {
       $('.pop_up_window').hide()
     },
     showLogin(){
+      $('.user_sticker').css('top', '20%')
+      $('.login_button').css('top', '120%')
       setTimeout(() => {
         $('.login').show().css('height', '25vh')
       }, 800);
@@ -92,10 +103,26 @@ export default {
       $('.login').hide()
     },
     showDetail(tableList){
-      this.currentTableList = tableList
+      this.currentTableList.push(tableList)
+      this.isThumbnail = true
       $('.pop_up_window').show()
       // $('.pop_up_window').toggle()
-      $('.message').text(this.currentTableList.detail)
+      // $('.message').text(this.currentTableList[tableList.number].detail)
+    },
+    zoomOutDetail(evt){
+      this.$nextTick(()=>{
+        TweenMax.to('.pop_up_window', 0.8, {
+          left: 40 + 'vw',
+          top: 70 + 'vh',
+          transform: 'translate(' + -50 + '%)',
+          width: 5 + 'vw',
+          opacity: 0,
+          ease: Power2.out
+        })
+        setTimeout(() => {
+          $('.pop_up_window').hide()
+        }, 800);
+      })
     },
     closeDetail(){
       $('.pop_up_window').hide()
@@ -229,6 +256,28 @@ export default {
       position: absolute
       bottom: 0
       width: 100%
+    .thumbnailList
+      display: flex
+      justify-content: start
+      align-items: start
+      position: absolute
+      width: 65%
+      height: 5vh
+      left: 10vw
+      bottom: 1.5vh
+      .openedThumbnail
+        display: inline-block
+        position: relative
+        height: 100%
+        width: 2.5vw
+        left: 0vw
+        margin-right: 0.5vw
+        &:hover
+          cursor: url(~@/assets/pointer.png), pointer
+          background-color: rgba(150, 150, 150, 0.6)
+        img
+          top: 0.5vh
+          transform: translate(-50%)
     .startFunction
       &.isPanelOpen
         display: none
