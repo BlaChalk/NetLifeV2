@@ -201,10 +201,14 @@ export default {
       })
     },
     screenOpacityDown(){
-      console.log('I am work.')
-      TweenMax.to('#table', 0.5, {
-        opacity: '-=' + this.screenOpacityAlt
-      })
+      let table = document.getElementById('table')
+      let nowTableOpacity = window.getComputedStyle(table, null)['opacity']
+      if (nowTableOpacity > 0.5) 
+      {
+        TweenMax.to('#table', 0.5, {
+          opacity: '-=' + this.screenOpacityAlt
+        })
+      }
     },
     turnOffScreen(){
       $('#table').hide()
