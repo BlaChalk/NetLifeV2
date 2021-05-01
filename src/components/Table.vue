@@ -104,9 +104,7 @@ export default {
     showTable(){
       setTimeout(() => {
         $('.cover').show()
-        $('.icon').show()
-        $('.name').show()
-        $('.thumbnailList').css('display', 'flex')
+        $('.thumbnailList').css('display', 'flex-block')
       }, 800);
       $('.toolbox').show()
       $('.start_button').show()
@@ -114,8 +112,6 @@ export default {
     },
     hideTable(){
       $('.cover').hide()
-      $('.icon').hide()
-      $('.name').show()
       $('.toolbox').hide()
       $('.start_button').hide()
       $('.pop_up_window').hide()
@@ -259,7 +255,7 @@ export default {
         position: absolute
         width: 10vw
         left: 50%
-        top: 20%
+        top: 15%
         transform: translateX(-50%)
       .login_button
         display: block
@@ -273,26 +269,23 @@ export default {
           width: 22vw
     .cover
       position: relative
-      display: flex-block
+      display: none
       justify-content: center
       align-items: center
       left: 4vw
-      width: 5vw
-      height: 5vw
-      margin-top: 4vw
+      width: 12%
+      margin-top: 5%
       cursor: url(~@/assets/pointer.png), pointer
+      &:hover
+        background-color: rgba(white, 0.3)
       .icon
-        display: none
         position: relative
-        // width: 100%
-        height: 100%
+        height: 80%
       .name
-        display: none
         position: relative
-        width: 100%
         font-size: 14px
-        margin-top: 1vh
-        color: #fff
+        text-shadow: 1px 1px 5px black
+        color: white
     .pop_up_window
       position: absolute
       width: 5%
