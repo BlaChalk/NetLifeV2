@@ -15,8 +15,8 @@
       .message {{ currentTableList.detail }}
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
     .thumbnailList(v-show="isThumbnail")
-      .openedThumbnail(v-for="(currentTableList, key) in currentTableLists")
-        img(:src="currentTableList.thumbnail" @click="showDetail(currentTableList); zoomInDetail(currentTableList)")
+      .openedThumbnail(:id="'thumbnail'+currentTableList.number" v-for="(currentTableList, key) in currentTableLists")
+        img(:src="currentTableList.thumbnail" @click="showDetail(currentTableList); currentTableList.show ? zoomOutDetail(currentTableList) : zoomInDetail(currentTableList)")
     .startFunction(:class="{isPanelOpen: isPanelOpen}")
       img.start_panel(src="../assets/entry/inside_Screen/start_panel.png")
       img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen()")
@@ -116,6 +116,8 @@ export default {
       // $('.pop_up_window').toggle()
     },
     zoomOutDetail(currentTableList){
+      currentTableList.show = false
+      $('#thumbnail'+currentTableList.number).css('border-bottom', 'none')
       this.$nextTick(()=>{
         TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
           left: 40 + '%',
@@ -129,10 +131,12 @@ export default {
       })
     },
     zoomInDetail(currentTableList){
+      currentTableList.show = true
+      $('#thumbnail'+currentTableList.number).css('border-bottom', '1.5px solid rgba(30, 100, 100, 0.8)')
       this.$nextTick(()=>{
         TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
-          left: 20 + '%',
-          top: 10 + '%',
+          left: 10+Math.random()*10 + '%',
+          top: 10+Math.random()*10 + '%',
           width: 70 + '%',
           opacity: 1,
           ease: Power2.out
