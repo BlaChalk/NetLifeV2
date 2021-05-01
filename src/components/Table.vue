@@ -255,14 +255,14 @@ export default {
         position: absolute
         width: 10vw
         left: 50%
-        top: 50%
+        top: 20%
         transform: translateX(-50%)
       .login_button
         display: block
         position: absolute
         width: 20vw
         left: 50%
-        top: 190%
+        top: 65%
         transform: translateX(-50%)
         &:hover
           cursor: url(~@/assets/pointer.png), pointer
