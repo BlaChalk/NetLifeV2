@@ -4,19 +4,19 @@
       img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
       img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin()")
     .cover(v-for="tableList in tableLists")
-      img.icon(:src="tableList.img" @dblclick="showDetail(tableList); zoomInDetail()")
+      img.icon(:src="tableList.img" @dblclick="showDetail(tableList); zoomInDetail(tableList)")
       .name {{ tableList.name }}
-    .pop_up_window(draggable="true")
+    .pop_up_window(:id="'PopUpWindow'+currentTableList.number" v-for="currentTableList in currentTableLists")
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
-        img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail($event)")
+        img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail(currentTableList)")
         img.o(src="../assets/entry/inside_Screen/o.svg")
-        img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail()")
-      .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
+        img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList)")
+      .message {{ currentTableList.detail }}
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
     .thumbnailList(v-show="isThumbnail")
       .openedThumbnail(v-for="(currentTableList, key) in currentTableLists")
-        img(:id="key" :src="currentTableList.thumbnail" @click="showDetail(currentTableList); zoomInDetail()")
+        img(:id="key" :src="currentTableList.thumbnail" @click="showDetail(currentTableList); zoomInDetail(currentTableList)")
     .startFunction(:class="{isPanelOpen: isPanelOpen}")
       img.start_panel(src="../assets/entry/inside_Screen/start_panel.png")
       img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen()")
@@ -37,21 +37,24 @@ export default {
           name: '本機',
           img: require('@/assets/entry/inside_Screen/PC.png'),
           thumbnail: require('@/assets/entry/inside_Screen/PC_thumbnail.png'),
-          detail: '這是畚箕'
+          detail: '這是畚箕',
+          show: false
         },
         {
           number: '2',
           name: '檔案總管',
           img: require('@/assets/entry/inside_Screen/folder.png'),
           thumbnail: require('@/assets/entry/inside_Screen/folder_thumbnail.png'),
-          detail: '這是總管'
+          detail: '這是總管',
+          show: false
         },
         {
           number: '3',
           name: '資源回收桶',
           img: require('@/assets/entry/inside_Screen/RecycleBin.png'),
           thumbnail: require('@/assets/entry/inside_Screen/recycleBin_thumbnail.png'),
-          detail: '這是回收桶'
+          detail: '這是回收桶',
+          show: false
         },
       ],
       currentTableLists: [],
@@ -105,54 +108,55 @@ export default {
     },
     showDetail(tableList){
       this.currentTableLists.push(tableList)
+      // 確保沒有重複
       this.currentTableLists = this.currentTableLists.filter(function (element, index, arr) {
         return arr.indexOf(element) === index;
       })
       this.isThumbnail = true
-      $('.pop_up_window').show()
+      console.log(this.currentTableLists)
       // $('.pop_up_window').toggle()
-      $('.message').text(tableList.detail)
     },
-    zoomOutDetail(evt){
+    zoomOutDetail(currentTableList){
       this.$nextTick(()=>{
-        TweenMax.to('.pop_up_window', 0.8, {
+        TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
           left: 40 + '%',
-          top: 70 + '%',
+          top: 90 + '%',
           width: 5 + '%',
           opacity: 0,
           ease: Power2.out
         })
-        $('.message').hide().css('opacity', '0')
-        $('.features').hide().css('opacity', '0')
-        setTimeout(() => {
-          $('.pop_up_window').hide()
-        }, 800);
+        // $('#PopUpWindow'+currentTableList.number+' ~ .message').hide().css('opacity', '0')
+        // $('#PopUpWindow'+currentTableList.number+' ~ .features').hide().css('opacity', '0')
+        // setTimeout(() => {
+        //   $('.pop_up_window').hide()
+        // }, 800);
       })
     },
-    zoomInDetail(){
-      $('.pop_up_window').show()
+    zoomInDetail(currentTableList){
       this.$nextTick(()=>{
-        TweenMax.to('.pop_up_window', 0.8, {
+        TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
           left: 20 + '%',
           top: 10 + '%',
           width: 70 + '%',
           opacity: 1,
           ease: Power2.out
         })
-        setTimeout(() => {
-          TweenMax.to('.message', 0.3, {
-            'opacity': 1
-          })
-          TweenMax.to('.features', 0.3, {
-            'opacity': 1
-          })
-          $('.message').show()
-          $('.features').show()
-        }, 600);
+        // setTimeout(() => {
+        //   TweenMax.to('.message', 0.3, {
+        //     'opacity': 1
+        //   })
+        //   TweenMax.to('.features', 0.3, {
+        //     'opacity': 1
+        //   })
+        //   $('.message').show()
+        //   $('.features').show()
+        // }, 600);
       })
     },
-    closeDetail(){
-      $('.pop_up_window').hide()
+    closeDetail(tableList){
+      this.currentTableLists = this.currentTableLists.filter(function (item) {
+        return item != tableList
+      })
     },
     screenOpacityUp(){
       TweenMax.to('#table', 0.5, {
@@ -251,8 +255,7 @@ export default {
       position: absolute
       width: 5%
       left: 40%
-      top: 70%
-      display: none
+      top: 90%
       .features
         position: absolute
         right: 0%
@@ -274,7 +277,6 @@ export default {
         position: relative
         width: 100%
       .message
-        display: none
         position: relative
         width: 80%
         left: 5vw
@@ -304,6 +306,7 @@ export default {
         width: 2.5vw
         left: 0vw
         margin-right: 0.5vw
+        border-bottom: 1.5px solid rgba(30, 100, 100, 0.8)
         &:hover
           cursor: url(~@/assets/pointer.png), pointer
           background-color: rgba(150, 150, 150, 0.6)
