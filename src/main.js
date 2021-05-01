@@ -3,6 +3,14 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+const DEFAULT_TITLE = '奈特人生';
+router.afterEach((to, from) => {
+    // Use next tick to handle router history correctly
+    Vue.nextTick(() => {
+        document.title = to.meta.title || DEFAULT_TITLE;
+    });
+});
+
 // Import Swiper
 import Swiper from 'swiper'
 import 'swiper/swiper.min.css'
