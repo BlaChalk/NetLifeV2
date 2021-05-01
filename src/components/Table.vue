@@ -4,7 +4,7 @@
       img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
       img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin()")
     .cover(v-for="tableList in tableLists")
-      img.icon(:src="tableList.img" @click="showDetail(tableList)")
+      img.icon(:src="tableList.img" @dblclick="showDetail(tableList)")
       .name {{ tableList.name }}
     .pop_up_window(draggable="true")
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
@@ -91,6 +91,7 @@ export default {
       $('.toolbox').hide()
       $('.start_button').hide()
       $('.pop_up_window').hide()
+      $('.thumbnailList').hide()
     },
     showLogin(){
       $('.user_sticker').css('top', '20%')
@@ -167,12 +168,14 @@ export default {
       this.isPanelOpen = !this.isPanelOpen
       this.hideTable()
       this.showLogin()
+      this.currentTableLists = []
     },
     shuDownScreen(){
       this.$emit('shuDownScreen')
       this.isPanelOpen = !this.isPanelOpen
       this.hideTable()
       this.hideLogin()
+      this.currentTableLists = []
     }
   }
 }
