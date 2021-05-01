@@ -243,7 +243,7 @@ export default {
     top: 20%
     left: 20%
     width: 60%
-    height: 50%
+    height: 45%
     background-color: rgba(white, 0.1)
     .login
       width: 100%
@@ -326,7 +326,7 @@ export default {
     .toolbox
       display: none
       position: absolute
-      bottom: 0
+      bottom: -11%
       width: 100%
     .thumbnailList
       display: flex
@@ -336,7 +336,7 @@ export default {
       width: 65%
       height: 5vh
       left: 10vw
-      bottom: 1.5vh
+      bottom: -9%
       .openedThumbnail
         display: flex
         justify-content: center
@@ -359,12 +359,12 @@ export default {
         position: absolute
         user-select: none
         width: 12vw
-        bottom: 3.7vw
+        bottom: 0%
         left: 0
       .turnOffButton
         width: 3vw
         left: 3vw
-        bottom: 5vw
+        bottom: 5%
         opacity: 0.8
         cursor: url(~@/assets/pointer.png), pointer
         &:hover
@@ -377,7 +377,7 @@ export default {
       background-color: #666
       position: absolute
       user-select: none
-      bottom: 1vw
+      bottom: -8%
       width: 4vw
       height: 1.5vw
       left: 1.5vw
