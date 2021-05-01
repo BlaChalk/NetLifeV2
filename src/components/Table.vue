@@ -61,7 +61,8 @@ export default {
       isThumbnail: true,
       tableZoomIn: 150,
       screenOpacityAlt: 0.2,
-      isPanelOpen: true
+      isPanelOpen: true,
+      zIndexCount: 1
     };
   },
   props: {
@@ -132,14 +133,16 @@ export default {
     },
     zoomInDetail(currentTableList){
       currentTableList.show = true
+      this.zIndexCount += 1
       $('#thumbnail'+currentTableList.number).css('border-bottom', '1.5px solid rgba(30, 100, 100, 0.8)')
+      $('#PopUpWindow'+currentTableList.number).css('z-index', this.zIndexCount)
       this.$nextTick(()=>{
         TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
           left: 10+Math.random()*10 + '%',
           top: 10+Math.random()*10 + '%',
           width: 70 + '%',
           opacity: 1,
-          ease: Power2.out
+          ease: Power2.out,
         })
         setTimeout(() => {
           TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.3, {
