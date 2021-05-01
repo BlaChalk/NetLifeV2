@@ -15,8 +15,8 @@
       .message 這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息，這是一個測試用的信息。
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
     .thumbnailList(v-show="isThumbnail")
-      .openedThumbnail(v-for="(thumbnail, key) in currentTableList")
-        img(:id="key" :src="thumbnail.thumbnail")
+      .openedThumbnail(v-for="(currentTableList, key) in currentTableLists")
+        img(:id="key" :src="currentTableList.thumbnail" @click="showDetail(currentTableList); zoomInDetail()")
     .startFunction(:class="{isPanelOpen: isPanelOpen}")
       img.start_panel(src="../assets/entry/inside_Screen/start_panel.png")
       img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen()")
@@ -54,7 +54,7 @@ export default {
           detail: '這是回收桶'
         },
       ],
-      currentTableList: [],
+      currentTableLists: [],
       isThumbnail: true,
       tableZoomIn: 150,
       screenOpacityAlt: 0.2,
@@ -103,7 +103,10 @@ export default {
       $('.login').hide()
     },
     showDetail(tableList){
-      this.currentTableList.push(tableList)
+      this.currentTableLists.push(tableList)
+      this.currentTableLists = this.currentTableLists.filter(function (element, index, arr) {
+        return arr.indexOf(element) === index;
+      })
       this.isThumbnail = true
       $('.pop_up_window').show()
       // $('.pop_up_window').toggle()
@@ -122,6 +125,19 @@ export default {
         setTimeout(() => {
           $('.pop_up_window').hide()
         }, 800);
+      })
+    },
+    zoomInDetail(){
+      $('.pop_up_window').show()
+      this.$nextTick(()=>{
+        TweenMax.to('.pop_up_window', 0.8, {
+          left: 20 + '%',
+          top: 10 + '%',
+          transform: 'translate(' + -50 + '%)',
+          width: 70 + '%',
+          opacity: 1,
+          ease: Power2.out
+        })
       })
     },
     closeDetail(){
@@ -209,7 +225,7 @@ export default {
       .icon
         display: none
         position: relative
-        width: 100%
+        // width: 100%
         height: 100%
       .name
         display: none
@@ -266,7 +282,9 @@ export default {
       left: 10vw
       bottom: 1.5vh
       .openedThumbnail
-        display: inline-block
+        display: flex
+        justify-content: center
+        align-items: center
         position: relative
         height: 100%
         width: 2.5vw
@@ -276,8 +294,7 @@ export default {
           cursor: url(~@/assets/pointer.png), pointer
           background-color: rgba(150, 150, 150, 0.6)
         img
-          top: 0.5vh
-          transform: translate(-50%)
+          width: 75%
     .startFunction
       &.isPanelOpen
         display: none
