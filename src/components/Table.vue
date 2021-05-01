@@ -360,6 +360,7 @@ export default {
         user-select: none
         width: 12vw
         bottom: 3.7vw
+        left: 0
       .turnOffButton
         width: 3vw
         left: 3vw
