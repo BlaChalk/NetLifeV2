@@ -4,7 +4,7 @@
       img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
       img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin()")
     .cover(v-for="tableList in tableLists")
-      img.icon(:src="tableList.img" @dblclick="showDetail(tableList)")
+      img.icon(:src="tableList.img" @dblclick="showDetail(tableList); zoomInDetail()")
       .name {{ tableList.name }}
     .pop_up_window(draggable="true")
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
@@ -111,18 +111,19 @@ export default {
       this.isThumbnail = true
       $('.pop_up_window').show()
       // $('.pop_up_window').toggle()
-      // $('.message').text(this.currentTableList[tableList.number].detail)
+      $('.message').text(tableList.detail)
     },
     zoomOutDetail(evt){
       this.$nextTick(()=>{
         TweenMax.to('.pop_up_window', 0.8, {
-          left: 40 + 'vw',
-          top: 70 + 'vh',
-          transform: 'translate(' + -50 + '%)',
-          width: 5 + 'vw',
+          left: 40 + '%',
+          top: 70 + '%',
+          width: 5 + '%',
           opacity: 0,
           ease: Power2.out
         })
+        $('.message').hide().css('opacity', '0')
+        $('.features').hide().css('opacity', '0')
         setTimeout(() => {
           $('.pop_up_window').hide()
         }, 800);
@@ -134,11 +135,20 @@ export default {
         TweenMax.to('.pop_up_window', 0.8, {
           left: 20 + '%',
           top: 10 + '%',
-          transform: 'translate(' + -50 + '%)',
           width: 70 + '%',
           opacity: 1,
           ease: Power2.out
         })
+        setTimeout(() => {
+          TweenMax.to('.message', 0.3, {
+            'opacity': 1
+          })
+          TweenMax.to('.features', 0.3, {
+            'opacity': 1
+          })
+          $('.message').show()
+          $('.features').show()
+        }, 600);
       })
     },
     closeDetail(){
@@ -239,9 +249,9 @@ export default {
         color: #fff
     .pop_up_window
       position: absolute
-      width: 70%
-      left: 20%
-      top: 10%
+      width: 5%
+      left: 40%
+      top: 70%
       display: none
       .features
         position: absolute
@@ -264,6 +274,7 @@ export default {
         position: relative
         width: 100%
       .message
+        display: none
         position: relative
         width: 80%
         left: 5vw
