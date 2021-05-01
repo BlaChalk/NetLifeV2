@@ -56,6 +56,30 @@ export default {
           detail: '這是回收桶',
           show: false
         },
+        {
+          number: '4',
+          name: '身心健康',
+          img: require('@/assets/entry/inside_Screen/health.png'),
+          thumbnail: require('@/assets/entry/inside_Screen/health.png'),
+          detail: '身心健康',
+          show: false
+        },
+        {
+          number: '5',
+          name: '生活失能',
+          img: require('@/assets/entry/inside_Screen/disability.png'),
+          thumbnail: require('@/assets/entry/inside_Screen/disability.png'),
+          detail: '生活失能',
+          show: false
+        },
+        {
+          number: '6',
+          name: '社交障礙',
+          img: require('@/assets/entry/inside_Screen/society.png'),
+          thumbnail: require('@/assets/entry/inside_Screen/society.png'),
+          detail: '社交障礙',
+          show: false
+        },
       ],
       currentTableLists: [],
       isThumbnail: true,
@@ -212,6 +236,7 @@ export default {
   #table
     position: relative
     display: flex
+    flex-wrap: wrap
     flex-direction: column
     justify-content: start
     align-items: start
@@ -250,7 +275,7 @@ export default {
       left: 4vw
       width: 5vw
       height: 5vw
-      margin-top: 3.5vw
+      margin-top: 4vw
       cursor: url(~@/assets/pointer.png), pointer
       .icon
         display: none
