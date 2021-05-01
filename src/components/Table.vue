@@ -16,7 +16,7 @@
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
     .thumbnailList(v-show="isThumbnail")
       .openedThumbnail(v-for="(currentTableList, key) in currentTableLists")
-        img(:id="key" :src="currentTableList.thumbnail" @click="showDetail(currentTableList); zoomInDetail(currentTableList)")
+        img(:src="currentTableList.thumbnail" @click="showDetail(currentTableList); zoomInDetail(currentTableList)")
     .startFunction(:class="{isPanelOpen: isPanelOpen}")
       img.start_panel(src="../assets/entry/inside_Screen/start_panel.png")
       img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen()")
@@ -113,7 +113,6 @@ export default {
         return arr.indexOf(element) === index;
       })
       this.isThumbnail = true
-      console.log(this.currentTableLists)
       // $('.pop_up_window').toggle()
     },
     zoomOutDetail(currentTableList){
@@ -125,11 +124,8 @@ export default {
           opacity: 0,
           ease: Power2.out
         })
-        // $('#PopUpWindow'+currentTableList.number+' ~ .message').hide().css('opacity', '0')
-        // $('#PopUpWindow'+currentTableList.number+' ~ .features').hide().css('opacity', '0')
-        // setTimeout(() => {
-        //   $('.pop_up_window').hide()
-        // }, 800);
+        $('#PopUpWindow'+currentTableList.number+' .message').css('opacity', '0')
+        $('#PopUpWindow'+currentTableList.number+' .features').css('opacity', '0')
       })
     },
     zoomInDetail(currentTableList){
@@ -141,16 +137,14 @@ export default {
           opacity: 1,
           ease: Power2.out
         })
-        // setTimeout(() => {
-        //   TweenMax.to('.message', 0.3, {
-        //     'opacity': 1
-        //   })
-        //   TweenMax.to('.features', 0.3, {
-        //     'opacity': 1
-        //   })
-        //   $('.message').show()
-        //   $('.features').show()
-        // }, 600);
+        setTimeout(() => {
+          TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.3, {
+            'opacity': 1
+          })
+          TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.3, {
+            'opacity': 1
+          })
+        }, 500);
       })
     },
     closeDetail(tableList){
@@ -257,6 +251,7 @@ export default {
       left: 40%
       top: 90%
       .features
+        opacity: 0
         position: absolute
         right: 0%
         top: 0%
@@ -277,6 +272,7 @@ export default {
         position: relative
         width: 100%
       .message
+        opacity: 0
         position: relative
         width: 80%
         left: 5vw
