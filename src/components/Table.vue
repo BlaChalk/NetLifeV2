@@ -10,7 +10,7 @@
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
         img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail(currentTableList)")
-        img.o(src="../assets/entry/inside_Screen/o.svg")
+        img.o(src="../assets/entry/inside_Screen/o.svg" @click="fullDetailWindow(currentTableList)")
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList)")
       .message {{ currentTableList.detail }}
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
@@ -136,6 +136,8 @@ export default {
       this.zIndexCount += 1
       $('#thumbnail'+currentTableList.number).css('border-bottom', '1.5px solid rgba(30, 100, 100, 0.8)')
       $('#PopUpWindow'+currentTableList.number).css('z-index', this.zIndexCount)
+      $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'12vw', 'right':'0%', 'top':'0%'})
+      $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'1.5vw', 'height':'1.5vw', 'margin':'0.8vw 0.75vw'})
       this.$nextTick(()=>{
         TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
           left: 10+Math.random()*10 + '%',
@@ -153,6 +155,16 @@ export default {
           })
         }, 500);
       })
+    },
+    fullDetailWindow(currentTableList){
+      TweenMax.to('#PopUpWindow'+currentTableList.number, 0.3, {
+        width: 100 + '%',
+        height: 100 + '%',
+        left: 0, 
+        top: 0 
+      })
+      $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'17vw', 'right':'0.4%', 'top':'1%'})
+      $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'2vw', 'height':'2vw', 'margin':'0.8vw 1.15vw'})
     },
     closeDetail(tableList){
       this.currentTableLists = this.currentTableLists.filter(function (item) {
