@@ -14,8 +14,8 @@
       img.host(src="../assets/entry/host.png")
       img.stereo_left(src="../assets/entry/stereo_left.png")
       img.stereo_right(src="../assets/entry/stereo_right.png")
-    img.photoFrame(src="../assets/entry/photoFrame.png")
-    .todolists
+    img.photoFrame(src="../assets/entry/photoFrame.png" @click="getDetailBackground(0)")
+    .todolists(@click="getDetailBackground(1)")
       img.todolist.todolist1(src="../assets/entry/todolist1.png")
       img.todolist.todolist2(src="../assets/entry/todolist2.png")
     img.plant(src="../assets/entry//plant.png")
@@ -24,6 +24,8 @@
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
     img.lamp(src="../assets/entry/lamp.png")
     img.mug(src="../assets/entry/mug.png")
+    .showDetail(v-show="isShowDetail")
+      img#detailBackground
     Table(ref="table" :windowSize="windowSize" @windowZoomIn="selfZoomIn" @reStartScreen="zoomInScreen" @shuDownScreen="closeScreenAndZoomOut")
     //- Nav
 </template>
@@ -37,7 +39,20 @@ export default {
   data() {
     return {
       windowSize: [],
-      isHoverScreen: false
+      isHoverScreen: false,
+      isShowDetail: false,
+      detailBackground: [
+        {
+          name: 'photoFrame_background',
+          img: require('@/assets/entry/photoFrame_background.png'),
+          altCss: '{"width": "50%"}',
+          width: '46%'
+        },
+        {
+          name: 'todolist_background',
+          img: require('@/assets/entry/todolist_background.png')
+        }
+      ]
     }
   },
   // mounted:function() {
@@ -103,6 +118,14 @@ export default {
       })
       this.isHoverScreen = false
       $('.screen').css('cursor', process.env.NODE_ENV === 'production' ? 'url(/NetLifeV2/img/cursor.png), auto' : 'url(/img/cursor.png), auto')
+    },
+    getDetailBackground(number){
+      this.isShowDetail = true
+      let altCss = this.detailBackground[number].altCss
+      console.log(this.detailBackground[number].altCss)
+      document.getElementById('detailBackground').src = this.detailBackground[number].img
+      document.getElementById('detailBackground').style.width = this.detailBackground[number].width
+      // $('#detailBackground').css(altCss)
     }
   }
 }
@@ -255,4 +278,17 @@ $(function() {
       width: 30%
       left: 150%
       top: 130%
+    .showDetail
+      position: absolute
+      display: flex
+      justify-content: center
+      align-items: center
+      width: 100vw
+      height: 100vh
+      left: -31.6vw
+      top: -32.6vh
+      // border: 1px solid red
+      #detailBackground
+        width: 70%
+        z-index: 10
 </style>
