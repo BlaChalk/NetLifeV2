@@ -18,13 +18,13 @@
     .todolists(@click="getDetailBackground(1)")
       img.todolist.todolist1(src="../assets/entry/todolist1.png")
       img.todolist.todolist2(src="../assets/entry/todolist2.png")
-    img.plant(src="../assets/entry//plant.png")
+    img.plant(src="../assets/entry//plant.png" @click="getDetailBackground(2)")
     .tissues
       img.tissue.tissue1(src="../assets/entry/tissue1.png")
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
     img.lamp(src="../assets/entry/lamp.gif")
-    img.mug(src="../assets/entry/mug.png")
-    .showDetail(v-show="isShowDetail")
+    img.mug(src="../assets/entry/mug.png" @click="getDetailBackground(3)")
+    .showDetail(v-show="isShowDetail" @click="isShowDetail=false")
       img#detailBackground
     Table(ref="table" :windowSize="windowSize" @windowZoomIn="selfZoomIn" @reStartScreen="zoomInScreen" @shuDownScreen="closeScreenAndZoomOut")
     //- Nav
@@ -50,7 +50,18 @@ export default {
         },
         {
           name: 'todolist_background',
-          img: require('@/assets/entry/todolist_background.png')
+          img: require('@/assets/entry/todolist_background.png'),
+          width: '75%'
+        },
+        {
+          name: 'plant_background',
+          img: require('@/assets/entry/plant_background.png'),
+          width: '70%'
+        },
+        {
+          name: 'mug_background',
+          img: require('@/assets/entry/mug_background.png'),
+          width: '60%'
         }
       ]
     }
@@ -303,8 +314,8 @@ $(function() {
       height: 100vh
       left: -31.6vw
       top: -32.6vh
-      // border: 1px solid red
+      background-color: rgba(black, 0.5)
       #detailBackground
-        width: 70%
+        width: 100%
         z-index: 10
 </style>
