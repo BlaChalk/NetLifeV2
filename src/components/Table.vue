@@ -110,7 +110,7 @@ export default {
     showTable(){
       setTimeout(() => {
         $('.cover').show()
-        $('.thumbnailList').css('display', 'flex-block')
+        $('.thumbnailList').css('display', 'flex')
       }, 800);
       $('.toolbox').show()
       $('.start_button').show()
