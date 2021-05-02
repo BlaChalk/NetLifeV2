@@ -21,9 +21,10 @@ html, body
   height: 100%
   margin: 0
   overflow: hidden
+  user-select: none
+  font-family: Avenir, Helvetica, Arial, sans-serif
 
 #app
-  // border: 1px solid #000
   font-family: Avenir, Helvetica, Arial, sans-serif
   -webkit-font-smoothing: antialiased
   -moz-osx-font-smoothing: grayscale
@@ -43,7 +44,6 @@ html, body
   width: 10vw
   height: 100vh
   float: right
-  // border: 1px solid #000
   background-color: rgba(250, 243, 221, 0.7)
   .swiper-slide
     display: flex
