@@ -22,7 +22,7 @@
     .tissues
       img.tissue.tissue1(src="../assets/entry/tissue1.png")
       img.tissue.tissue2(src="../assets/entry/tissue2.png")
-    img.lamp(src="../assets/entry/lamp.png")
+    img.lamp(src="../assets/entry/lamp.gif")
     img.mug(src="../assets/entry/mug.png")
     .showDetail(v-show="isShowDetail")
       img#detailBackground
@@ -130,15 +130,27 @@ export default {
   }
 }
 $(function() {
-    $('.plant').hover(
-      function(){
-        let src = process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/plant_growing.gif' : '/img/plant_growing.gif'
-        $(this).attr( "src", src.replace( /\.gif$/, ".gif?rnd=" + Math.floor(Math.random() * 100) + 1));
-      },  
-      function(){
-        let plant_src = process.env.NODE_ENV === 'production' ? '/NetLifeV2/img/plant.png' : '/img/plant.png'
-        $(this).attr('src', plant_src)
-    })
+
+  let plusURL = process.env.NODE_ENV === 'production' ? '/NetLifeV2' : ''
+
+  $('.plant').hover(
+    function(){
+      let src = plusURL+'/img/plant_growing.gif'
+      $(this).attr( "src", src.replace( /\.gif$/, ".gif?rnd=" + Math.floor(Math.random() * 100) + 1));
+    },  
+    function(){
+      let plant_src = plusURL+'/img/plant.png'
+      $(this).attr('src', plant_src)
+  })
+  $('.mug').hover(
+    function(){
+      let src = plusURL+'/img/mug_falling.gif'
+      $(this).attr( "src", src.replace( /\.gif$/, ".gif?rnd=" + Math.floor(Math.random() * 100) + 1));
+    },  
+    function(){
+      let plant_src = plusURL+'/img/mug.png'
+      $(this).attr('src', plant_src)
+  })
 });
 
 </script>
@@ -278,6 +290,10 @@ $(function() {
       width: 30%
       left: 150%
       top: 130%
+      &:hover
+        width: 100%
+        transform: translate(-35%, -10%)
+        cursor: url(~@/assets/pointer.png), pointer
     .showDetail
       position: absolute
       display: flex
