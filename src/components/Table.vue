@@ -212,7 +212,7 @@ export default {
           ease: Power2.out,
         })
       })
-      $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'20%', 'height':'42%','font-size':'18px'})
+      $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'13vh', 'height':'42%','font-size':'18px'})
       $('#PopUpWindow'+currentTableList.number+' .message h4').css({'font-size':'24px'})
       $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'12vw', 'right':'0%', 'top':'0%'})
       $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'1.5vw', 'height':'1.5vw', 'margin':'0.8vw 0.75vw'})

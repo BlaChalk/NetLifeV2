@@ -22,7 +22,6 @@ html, body
   margin: 0
   overflow: hidden
   user-select: none
-  font-family: Avenir, Helvetica, Arial, sans-serif
 
 #app
   font-family: Avenir, Helvetica, Arial, sans-serif
