@@ -38,7 +38,8 @@ export default {
           img: require('@/assets/entry/inside_Screen/PC.png'),
           thumbnail: require('@/assets/entry/inside_Screen/PC_thumbnail.png'),
           detail: '這是畚箕',
-          show: false
+          show: false,
+          isFullWindow: false
         },
         {
           number: '2',
@@ -46,7 +47,8 @@ export default {
           img: require('@/assets/entry/inside_Screen/folder.png'),
           thumbnail: require('@/assets/entry/inside_Screen/folder_thumbnail.png'),
           detail: '這是總管',
-          show: false
+          show: false,
+          isFullWindow: false
         },
         {
           number: '3',
@@ -54,7 +56,8 @@ export default {
           img: require('@/assets/entry/inside_Screen/RecycleBin.png'),
           thumbnail: require('@/assets/entry/inside_Screen/recycleBin_thumbnail.png'),
           detail: '這是回收桶',
-          show: false
+          show: false,
+          isFullWindow: false
         },
         {
           number: '4',
@@ -62,7 +65,8 @@ export default {
           img: require('@/assets/entry/inside_Screen/health.png'),
           thumbnail: require('@/assets/entry/inside_Screen/health.png'),
           detail: '使用網路本身並非壞事，善加利用反而能透過網路獲得更多學習資源。倘若出現以下三種情況可能要小心有成癮的可能:<br><br>1.無意識強迫自己使用無意識的去使用網路，或使用的時間比自己預期的多出很多，簡單地說就是「停不下來」。<br><br>2.心理不滿足隨著成癮的程度越高，你會需要更多的網路使用時間，才能達到一樣的爽快的效果。<br><br>3.戒斷症狀當別人強迫你不能使用網路時，身體會出現一些劇烈的生理反應，比方說煩躁、容易發怒、注意力不集中、四肢無力、憂鬱、焦慮等等，這些生／心理反應我們就稱之為戒斷症狀。',
-          show: false
+          show: false,
+          isFullWindow: false
         },
         {
           number: '5',
@@ -70,7 +74,8 @@ export default {
           img: require('@/assets/entry/inside_Screen/disability.png'),
           thumbnail: require('@/assets/entry/inside_Screen/disability.png'),
           detail: '生活失能',
-          show: false
+          show: false,
+          isFullWindow: false
         },
         {
           number: '6',
@@ -78,7 +83,8 @@ export default {
           img: require('@/assets/entry/inside_Screen/society.png'),
           thumbnail: require('@/assets/entry/inside_Screen/society.png'),
           detail: '社交障礙',
-          show: false
+          show: false,
+          isFullWindow: false
         },
       ],
       currentTableLists: [],
@@ -156,32 +162,51 @@ export default {
       this.zIndexCount += 1
       $('#thumbnail'+currentTableList.number).css('border-bottom', '1.5px solid rgba(30, 100, 100, 0.8)')
       $('#PopUpWindow'+currentTableList.number).css('z-index', this.zIndexCount)
-      $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'12vw', 'right':'0%', 'top':'0%'})
-      $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'1.5vw', 'height':'1.5vw', 'margin':'0.8vw 0.75vw'})
-      this.$nextTick(()=>{
-        TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
-          left: 10+Math.random()*10 + '%',
-          top: 10+Math.random()*10 + '%',
-          width: 70 + '%',
-          opacity: 1,
-          ease: Power2.out,
+      
+      let _this = this
+      if(currentTableList.isFullWindow){
+        _this.currentTableLists.filter(function (item) {
+          _this.fullDetailWindow(item)
+          setTimeout(() => {
+            TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.3, {
+              'opacity': 1
+            })
+            TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.3, {
+              'opacity': 1
+            })
+          }, 500);
         })
-        setTimeout(() => {
-          TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.3, {
-            'opacity': 1
+        }
+      else{
+        $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'12vw', 'right':'0%', 'top':'0%'})
+        $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'1.5vw', 'height':'1.5vw', 'margin':'0.8vw 0.75vw'})
+        this.$nextTick(()=>{
+          TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
+            left: 10+Math.random()*10 + '%',
+            top: 10+Math.random()*10 + '%',
+            width: 70 + '%',
+            opacity: 1,
+            ease: Power2.out,
           })
-          TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.3, {
-            'opacity': 1
-          })
-        }, 500);
-      })
+          setTimeout(() => {
+            TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.3, {
+              'opacity': 1
+            })
+            TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.3, {
+              'opacity': 1
+            })
+          }, 500);
+        })
+      }
     },
     fullDetailWindow(currentTableList){
+      currentTableList.isFullWindow = true
       TweenMax.to('#PopUpWindow'+currentTableList.number, 0.3, {
         width: 100 + '%',
         height: 100 + '%',
         left: 0, 
-        top: 0 
+        top: 0,
+        opacity: 1,
       })
       $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'28%', 'height':'60%','font-size':'24px'})
       $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'17vw', 'right':'0.4%', 'top':'1%'})
@@ -191,6 +216,7 @@ export default {
       this.currentTableLists = this.currentTableLists.filter(function (item) {
         return item != tableList
       })
+      tableList.isFullWindow = false
     },
     screenOpacityUp(){
       TweenMax.to('#table', 0.5, {
@@ -329,6 +355,7 @@ export default {
       position: absolute
       bottom: -11%
       width: 100%
+      z-index: 1000
     .thumbnailList
       display: flex
       justify-content: start
@@ -338,6 +365,7 @@ export default {
       height: 5vh
       left: 10vw
       bottom: -9%
+      z-index: 1001
       .openedThumbnail
         display: flex
         justify-content: center
@@ -354,6 +382,7 @@ export default {
         img
           width: 75%
     .startFunction
+      z-index: 1001
       &.isPanelOpen
         display: none
       .start_panel
@@ -382,6 +411,7 @@ export default {
       width: 4vw
       height: 1.5vw
       left: 1.5vw
+      z-index: 1001
       &:hover
         background-color: #333
         cursor: url(~@/assets/pointer.png), pointer
