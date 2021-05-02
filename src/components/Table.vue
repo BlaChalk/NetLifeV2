@@ -12,7 +12,7 @@
         img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail(currentTableList)")
         img.o(src="../assets/entry/inside_Screen/o.svg" @click="fullDetailWindow(currentTableList)")
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList)")
-      .message {{ currentTableList.detail }}
+      .message(v-html="currentTableList.detail")
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
     .thumbnailList(v-show="isThumbnail")
       .openedThumbnail(:id="'thumbnail'+currentTableList.number" v-for="(currentTableList, key) in currentTableLists")
@@ -61,7 +61,7 @@ export default {
           name: '身心健康',
           img: require('@/assets/entry/inside_Screen/health.png'),
           thumbnail: require('@/assets/entry/inside_Screen/health.png'),
-          detail: '身心健康',
+          detail: '使用網路本身並非壞事，善加利用反而能透過網路獲得更多學習資源。倘若出現以下三種情況可能要小心有成癮的可能:<br><br>1.無意識強迫自己使用無意識的去使用網路，或使用的時間比自己預期的多出很多，簡單地說就是「停不下來」。<br><br>2.心理不滿足隨著成癮的程度越高，你會需要更多的網路使用時間，才能達到一樣的爽快的效果。<br><br>3.戒斷症狀當別人強迫你不能使用網路時，身體會出現一些劇烈的生理反應，比方說煩躁、容易發怒、注意力不集中、四肢無力、憂鬱、焦慮等等，這些生／心理反應我們就稱之為戒斷症狀。',
           show: false
         },
         {
@@ -183,6 +183,7 @@ export default {
         left: 0, 
         top: 0 
       })
+      $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'28%', 'height':'60%','font-size':'24px'})
       $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'17vw', 'right':'0.4%', 'top':'1%'})
       $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'2vw', 'height':'2vw', 'margin':'0.8vw 1.15vw'})
     },
@@ -314,12 +315,15 @@ export default {
         width: 100%
       .message
         opacity: 0
-        position: relative
+        position: absolute
         width: 80%
-        left: 5vw
-        top: -15vw
+        height: 53%
+        left: 10%
+        top: 25%
+        font-size: 18px
         text-align: left
         color: #222
+        overflow-y: scroll
     .toolbox
       display: none
       position: absolute
