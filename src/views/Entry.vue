@@ -314,7 +314,7 @@ $(function() {
       height: 100vh
       left: -31.6vw
       top: -32.6vh
-      background-color: rgba(black, 0.5)
+      background-color: rgba(black, 0.6)
       #detailBackground
         width: 100%
         z-index: 10
