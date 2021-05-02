@@ -167,40 +167,25 @@ export default {
       $('#PopUpWindow'+currentTableList.number).show().css('z-index', this.zIndexCount)
       
       let _this = this
-      if(currentTableList.isFullWindow){
+      if(currentTableList.isFullWindow)
         _this.currentTableLists.filter(function (item) {
-          _this.fullDetailWindow(item)
-          setTimeout(() => {
-            TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.2, {
-              'opacity': 1
-            })
-            TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.2, {
-              'opacity': 1
-            })
-          }, 300);
+          if(item == currentTableList)
+            _this.fullDetailWindow(item)
         })
-        }
-      else{
-        $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'12vw', 'right':'0%', 'top':'0%'})
-        $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'1.5vw', 'height':'1.5vw', 'margin':'0.8vw 0.75vw'})
-        this.$nextTick(()=>{
-          TweenMax.to('#PopUpWindow'+currentTableList.number, 0.4, {
-            left: 10+Math.random()*10 + '%',
-            top: 10+Math.random()*10 + '%',
-            width: 70 + '%',
-            opacity: 1,
-            ease: Power2.out,
-          })
-          setTimeout(() => {
-            TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.2, {
-              'opacity': 1
-            })
-            TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.2, {
-              'opacity': 1
-            })
-          }, 300);
+      else
+        _this.currentTableLists.filter(function (item) {
+          if(item == currentTableList)
+            _this.unFullDetailWindow(item)
         })
-      }
+
+      setTimeout(() => {
+        TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.2, {
+          'opacity': 1
+        })
+        TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.2, {
+          'opacity': 1
+        })
+      }, 300);
     },
     fullDetailWindow(currentTableList){
       currentTableList.isFullWindow = true
@@ -218,12 +203,14 @@ export default {
     },
     unFullDetailWindow(currentTableList){
       currentTableList.isFullWindow = false
-      TweenMax.to('#PopUpWindow'+currentTableList.number, 0.3, {
-        left: 10+Math.random()*10 + '%',
-        top: 10+Math.random()*10 + '%',
-        width: 70 + '%',
-        opacity: 1,
-        ease: Power2.out,
+      this.$nextTick(()=>{
+        TweenMax.to('#PopUpWindow'+currentTableList.number, 0.3, {
+          left: 10+Math.random()*10 + '%',
+          top: 10+Math.random()*10 + '%',
+          width: 70 + '%',
+          opacity: 1,
+          ease: Power2.out,
+        })
       })
       $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'20%', 'height':'42%','font-size':'18px'})
       $('#PopUpWindow'+currentTableList.number+' .message h4').css({'font-size':'24px'})
