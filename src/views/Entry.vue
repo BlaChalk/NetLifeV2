@@ -148,19 +148,23 @@ $(function() {
     function(){
       let src = plusURL+'/img/plant_growing.gif'
       $(this).attr( "src", src.replace( /\.gif$/, ".gif?rnd=" + Math.floor(Math.random() * 100) + 1));
+      $(this).css({'width': '90%', 'transform': 'translate(-5%, -20%)'})
     },  
     function(){
       let plant_src = plusURL+'/img/plant.png'
       $(this).attr('src', plant_src)
+      $(this).css({'width': '80%', 'transform': 'translate(0%, 5%)'})
   })
   $('.mug').hover(
     function(){
       let src = plusURL+'/img/mug_falling.gif'
       $(this).attr( "src", src.replace( /\.gif$/, ".gif?rnd=" + Math.floor(Math.random() * 100) + 1));
+      $(this).css({'width': '100%', 'transform': 'translate(-35%, -10%)'})
     },  
     function(){
       let plant_src = plusURL+'/img/mug.png'
       $(this).attr('src', plant_src)
+      $(this).css({'width': '30%', 'transform': 'translate(5%, 10%)'})
   })
 });
 
@@ -279,8 +283,6 @@ $(function() {
       // background-size: cover
       // background-image: url(../assets/entry/plant.png)
       &:hover
-        width: 90%
-        transform: translate(-5%, -20%)
         cursor: url(~@/assets/pointer.png), pointer
       //   background-origin: border-box
       //   background-image: url(../assets/entry/plant_growing.gif)
@@ -302,8 +304,6 @@ $(function() {
       left: 150%
       top: 130%
       &:hover
-        width: 100%
-        transform: translate(-35%, -10%)
         cursor: url(~@/assets/pointer.png), pointer
     .showDetail
       position: absolute
