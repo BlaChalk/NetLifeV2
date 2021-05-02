@@ -155,33 +155,36 @@ export default {
         })
         $('#PopUpWindow'+currentTableList.number+' .message').css('opacity', '0')
         $('#PopUpWindow'+currentTableList.number+' .features').css('opacity', '0')
+        setTimeout(() => {
+          $('#PopUpWindow'+currentTableList.number).hide()
+        }, 800);
       })
     },
     zoomInDetail(currentTableList){
       currentTableList.show = true
       this.zIndexCount += 1
       $('#thumbnail'+currentTableList.number).css('border-bottom', '1.5px solid rgba(30, 100, 100, 0.8)')
-      $('#PopUpWindow'+currentTableList.number).css('z-index', this.zIndexCount)
+      $('#PopUpWindow'+currentTableList.number).show().css('z-index', this.zIndexCount)
       
       let _this = this
       if(currentTableList.isFullWindow){
         _this.currentTableLists.filter(function (item) {
           _this.fullDetailWindow(item)
           setTimeout(() => {
-            TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.3, {
+            TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.2, {
               'opacity': 1
             })
-            TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.3, {
+            TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.2, {
               'opacity': 1
             })
-          }, 500);
+          }, 300);
         })
         }
       else{
         $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'12vw', 'right':'0%', 'top':'0%'})
         $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'1.5vw', 'height':'1.5vw', 'margin':'0.8vw 0.75vw'})
         this.$nextTick(()=>{
-          TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
+          TweenMax.to('#PopUpWindow'+currentTableList.number, 0.4, {
             left: 10+Math.random()*10 + '%',
             top: 10+Math.random()*10 + '%',
             width: 70 + '%',
@@ -189,13 +192,13 @@ export default {
             ease: Power2.out,
           })
           setTimeout(() => {
-            TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.3, {
+            TweenMax.to('#PopUpWindow'+currentTableList.number+' .message', 0.2, {
               'opacity': 1
             })
-            TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.3, {
+            TweenMax.to('#PopUpWindow'+currentTableList.number+' .features', 0.2, {
               'opacity': 1
             })
-          }, 500);
+          }, 300);
         })
       }
     },
