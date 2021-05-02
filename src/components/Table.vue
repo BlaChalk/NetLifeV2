@@ -10,7 +10,7 @@
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
         img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail(currentTableList)")
-        img.o(src="../assets/entry/inside_Screen/o.svg" @click="fullDetailWindow(currentTableList)")
+        img.o(src="../assets/entry/inside_Screen/o.svg" @click="currentTableList.isFullWindow ? unFullDetailWindow(currentTableList) : fullDetailWindow(currentTableList)")
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList)")
       .message(v-html="currentTableList.detail")
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
@@ -36,8 +36,8 @@ export default {
           number: '1',
           name: '本機',
           img: require('@/assets/entry/inside_Screen/PC.png'),
-          thumbnail: require('@/assets/entry/inside_Screen/PC_thumbnail.png'),
-          detail: '這是畚箕',
+          thumbnail: require('@/assets/entry/inside_Screen/PC.png'),
+          detail: '網路和科技是這時代的趨勢，無痛戒斷的目的是為了<b>『取得生活和科技之間的平衡』</b>，而不是拒絕數位科技，所以當發現生活出了問題時，就需要養成一個新的習慣回歸舒適的生活模式。',
           show: false,
           isFullWindow: false
         },
@@ -45,7 +45,7 @@ export default {
           number: '2',
           name: '檔案總管',
           img: require('@/assets/entry/inside_Screen/folder.png'),
-          thumbnail: require('@/assets/entry/inside_Screen/folder_thumbnail.png'),
+          thumbnail: require('@/assets/entry/inside_Screen/folder.png'),
           detail: '這是總管',
           show: false,
           isFullWindow: false
@@ -54,7 +54,7 @@ export default {
           number: '3',
           name: '資源回收桶',
           img: require('@/assets/entry/inside_Screen/RecycleBin.png'),
-          thumbnail: require('@/assets/entry/inside_Screen/recycleBin_thumbnail.png'),
+          thumbnail: require('@/assets/entry/inside_Screen/RecycleBin.png'),
           detail: '這是回收桶',
           show: false,
           isFullWindow: false
@@ -215,6 +215,21 @@ export default {
       $('#PopUpWindow'+currentTableList.number+' .message h4').css({'font-size':'42px'})
       $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'17vw', 'right':'0.4%', 'top':'1%'})
       $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'2vw', 'height':'2vw', 'margin':'0.8vw 1.15vw'})
+    },
+    unFullDetailWindow(currentTableList){
+      currentTableList.isFullWindow = false
+      TweenMax.to('#PopUpWindow'+currentTableList.number, 0.3, {
+        left: 10+Math.random()*10 + '%',
+        top: 10+Math.random()*10 + '%',
+        width: 70 + '%',
+        opacity: 1,
+        ease: Power2.out,
+      })
+      $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'20%', 'height':'42%','font-size':'18px'})
+      $('#PopUpWindow'+currentTableList.number+' .message h4').css({'font-size':'24px'})
+      $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'12vw', 'right':'0%', 'top':'0%'})
+      $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'1.5vw', 'height':'1.5vw', 'margin':'0.8vw 0.75vw'})
+
     },
     closeDetail(tableList){
       this.currentTableLists = this.currentTableLists.filter(function (item) {
