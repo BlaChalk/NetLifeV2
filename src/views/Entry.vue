@@ -78,15 +78,15 @@ export default {
           name: 'mug_background',
           img: require('@/assets/entry/mug_background.png'),
           text(){
-            let drawList = ['蹲得越低腳越麻', '初一十五看月亮']
+            let drawList = ['馬克杯跌倒了，我也跌倒了。_(:3」∠ )_', '聽說，每當個人的電腦D槽資料夾都裝着夢想？ ლ(＾ω＾ლ) ', '看看網路對我做了些什麼？ (๑ʘ̅ д ʘ̅๑)!!! ', '兄弟齊心，兩百公斤！(๑•̀ᄇ•́)و ✧ ', '跌倒了怎麼辦？那就躺著…_(:3」∠ )_ ', '每天少喝一杯珍奶，七天後你就可以喝七杯了！(๑•̀ᄇ•́)و ✧ ', '條條大路通羅馬，有人出生在羅馬。(ಥ_ಥ) ', '只要用錢就能解決的事情，我全都解決不了。(つД`) ', '難過1分鐘就失去60秒的快樂時光(；д；) ', '阿姨我不想努力了！(Ｔ▽Ｔ)', '謝謝那些曾經打我打倒的人躺著真的很舒服_(:3」∠ )_', '萬事起頭難，中間難，到最後都難。(ಥ_ಥ) ', '蹲得越低，腳就越酸。d(`･∀･)b', '以後的路你一定要走下去，而我，做車。d(`･∀･)b', '你要好好愛自己，因為我不愛你。థ౪థ']
             return drawList[parseInt(Math.random()*drawList.length)]
           },
           width: '60%',
           top: '10vh',
           left: '10vw',
-          textWidth: '30vw',
+          textWidth: '32vw',
           textHeight: '30vh',
-          textTop: '-15vh',
+          textTop: '-10vh',
           textLeft: '-2vw',
         }
       ]
