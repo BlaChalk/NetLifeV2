@@ -2,7 +2,7 @@
   #table
     .login
       img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
-      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin(); playAudio(sound.click)")
+      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin(); playAudio(sound.windowOriginBoot)")
     .cover(v-for="tableList in tableLists")
       img.icon(:src="tableList.img" @dblclick="showDetail(tableList); zoomInDetail(tableList); playAudio(sound.doubleClick)")
       .name {{ tableList.name }}
@@ -91,6 +91,9 @@ export default {
       sound: {
         click: require('@/assets/sound/click.mp3'),
         doubleClick: require('@/assets/sound/double_clicks.mp3'),
+        windowOriginBoot: require('@/assets/sound/windowsOrigin_boot.wav'),
+        windowXPBoot: require('@/assets/sound/windowsXP_boot.wav'),
+        window7Boot: require('@/assets/sound/windows7_boot.wav'),
         windowShutdown: require('@/assets/sound/windows_shutdown.mp3')
       },
       currentTableLists: [],
