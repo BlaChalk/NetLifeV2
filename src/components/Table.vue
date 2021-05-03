@@ -353,10 +353,12 @@ export default {
     turnOffScreen(){
       $('#table').hide()
       this.hideLogin()
+      this.isMenuOpen = false
     },
     turnOnScreen(){
       $('#table').show()
       this.showLogin()
+      this.hideTable()
     },
     reStartScreen(){
       this.$emit('reStartScreen')
@@ -369,13 +371,14 @@ export default {
     },
     shuDownScreen(){
       this.$emit('shuDownScreen')
-      this.isPanelOpen = false
       this.hideTable()
       this.hideLogin()
       this.currentTableLists = []
       this.blueScreen.isBlueScreen = false
       this.blueScreen.canShowBlueScreen = false
       this.warnMessage.show = false
+      this.isPanelOpen = false
+      this.isMenuOpen = false
       this.zIndexCount = 1
       this.warnCount = 1
     },
