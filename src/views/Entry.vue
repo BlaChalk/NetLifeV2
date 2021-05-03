@@ -70,7 +70,6 @@ export default {
           img: require('@/assets/entry/mug_background.png'),
           text(){
             let drawList = ['今天還是好星報', '初一十五看月亮']
-            console.log(Math.round(Math.random()*2))
             return drawList[Math.round(Math.random()*2)-1]
           },
           width: '60%',
