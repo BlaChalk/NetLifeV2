@@ -17,11 +17,12 @@
     .thumbnailList(v-show="isThumbnail")
       .openedThumbnail(:id="'thumbnail'+currentTableList.number" v-for="(currentTableList, key) in currentTableLists")
         img(:src="currentTableList.thumbnail" @click="showDetail(currentTableList); currentTableList.show ? zoomOutDetail(currentTableList) : zoomInDetail(currentTableList)")
-    .startFunction(:class="{isPanelOpen: isPanelOpen}")
+    .startFunction(v-show="isPanelOpen")
       img.start_panel(src="../assets/entry/inside_Screen/start_panel.png")
       img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen()")
       img.turnOffButton.shutDown(src="../assets/entry/inside_Screen/shutDown.png" @click="shuDownScreen()")
     .start_button(@click="isPanelOpen=!isPanelOpen")
+    img.blueScreen(src="../assets/entry/inside_Screen/blueScreen.png" v-show="blueScreen.isBlueScreen")
       
 </template>
 
@@ -91,8 +92,16 @@ export default {
       isThumbnail: true,
       tableZoomIn: 150,
       screenOpacityAlt: 0.2,
-      isPanelOpen: true,
-      zIndexCount: 1
+      isPanelOpen: false,
+      zIndexCount: 1,
+
+      // 藍屏設定
+      blueScreen: {
+        isBlueScreen: false,
+        canShowBlueScreen: true,
+        blueScreenShowTime: 60, // 設定藍屏啟動時間
+        blueScreenWaitTime: 5 // 藍屏持續時間 
+      }
     };
   },
   props: {
@@ -108,6 +117,8 @@ export default {
       })
     },
     showTable(){
+      this.blueScreenTimeCount()
+      this.blueScreen.canShowBlueScreen = true
       setTimeout(() => {
         $('.cover').show()
         $('.thumbnailList').css('display', 'flex')
@@ -249,17 +260,31 @@ export default {
     },
     reStartScreen(){
       this.$emit('reStartScreen')
-      this.isPanelOpen = !this.isPanelOpen
+      this.isPanelOpen = false
       this.hideTable()
       this.showLogin()
       this.currentTableLists = []
+      this.blueScreen.isBlueScreen = false
+      this.blueScreen.canShowBlueScreen =false
     },
     shuDownScreen(){
       this.$emit('shuDownScreen')
-      this.isPanelOpen = !this.isPanelOpen
+      this.isPanelOpen = false
       this.hideTable()
       this.hideLogin()
       this.currentTableLists = []
+      this.blueScreen.isBlueScreen = false
+      this.blueScreen.canShowBlueScreen = false
+    },
+    blueScreenTimeCount(){
+      setTimeout(() => {
+        if(this.blueScreen.canShowBlueScreen){
+          this.blueScreen.isBlueScreen = true
+          setTimeout(() => {
+            this.shuDownScreen()
+          }, this.blueScreen.blueScreenWaitTime*1000);
+        }
+      }, this.blueScreen.blueScreenShowTime*1000);
     }
   }
 }
@@ -427,4 +452,8 @@ export default {
       &:hover
         background-color: #333
         cursor: url(~@/assets/pointer.png), pointer
+    .blueScreen
+      width: 100%
+      height: 111%
+      z-index: 1002
 </style>
