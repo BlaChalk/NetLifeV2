@@ -15,6 +15,7 @@
       .title(v-html="currentTableList.name")
       .message(v-html="currentTableList.detail")
       img.warningSign(src="../assets/entry/inside_Screen/warning.png" v-show="currentTableList.isWarning")
+      img.errorSign(src="../assets/entry/inside_Screen/error.png" v-show="currentTableList.isError")
       .checkArea(v-show="currentTableList.isNeedCheck")
         .checkButton.checkYes(@click="checkYesOrNo(currentTableList, true); playAudio(sound.click)")
           img(src="../assets/entry/inside_Screen/checkButton.png")
@@ -110,11 +111,23 @@ export default {
           img: require('@/assets/entry/inside_Screen/warning.png'),
           window: require('@/assets/entry/inside_Screen/window_question.png'),
           thumbnail: require('@/assets/entry/inside_Screen/warning.png'),
-          detail: '你再不後退，我就要叫了哦！',
+          detail: '我從內碼看到你不是這台電腦的主人，你再不後退，我就要叫了哦?',
           show: false,
           isFullWindow: false,
           isNeedCheck: true,
           isWarning: true
+        },
+      errorMessage: {
+          number: '8',
+          name: '錯誤',
+          img: require('@/assets/entry/inside_Screen/error.png'),
+          window: require('@/assets/entry/inside_Screen/window_question.png'),
+          thumbnail: require('@/assets/entry/inside_Screen/error.png'),
+          detail: '這是我最後給你的機會，你真的不考慮先看其他的東西嗎？',
+          show: false,
+          isFullWindow: false,
+          isNeedCheck: true,
+          isError: true
         },
       sound: {
         click: require('@/assets/sound/click.mp3'),
@@ -191,11 +204,16 @@ export default {
       // $('.pop_up_window').toggle()
     },
     checkYesOrNo(currentTableList, value){
-      this.warnCount ++
-      if(value && this.warnCount>3){
+      if(currentTableList.number == 8)
+        this.warnCount ++
+      if(value && currentTableList.number == 8 && this.warnCount>1){
         this.popUpBlueScreen()
       }
-      if(value){
+      else if(value && this.warnMessage.show){
+        this.showDetail(this.errorMessage)
+        this.zoomInDetail(this.errorMessage)
+      }
+      else if(value){
         this.showDetail(this.warnMessage)
         this.zoomInDetail(this.warnMessage)
       }
@@ -243,6 +261,8 @@ export default {
       $('#PopUpWindow'+currentTableList.number).show().css('z-index', this.zIndexCount)
       
       if(currentTableList.isWarning)
+        this.altMessagePosition(currentTableList)
+      if(currentTableList.isError)
         this.altMessagePosition(currentTableList)
 
       let _this = this
@@ -307,6 +327,7 @@ export default {
         return item != tableList
       })
       tableList.isFullWindow = false
+      tableList.show = false
     },
     screenOpacityUp(){
       TweenMax.to('#table', 0.5, {
@@ -348,6 +369,7 @@ export default {
       this.currentTableLists = []
       this.blueScreen.isBlueScreen = false
       this.blueScreen.canShowBlueScreen = false
+      this.warnMessage.show = false
       this.zIndexCount = 1
       this.warnCount = 1
     },
@@ -470,6 +492,11 @@ export default {
         color: #222
         overflow-y: scroll
       .warningSign
+        position: absolute
+        left: 10%
+        top: 25%
+        width: 15%
+      .errorSign
         position: absolute
         left: 10%
         top: 25%
