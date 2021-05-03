@@ -46,23 +46,36 @@ export default {
         {
           name: 'photoFrame_background',
           img: require('@/assets/entry/photoFrame_background.png'),
-          width: '46%'
+          width: '46%',
+          top: '0vh',
+          left: '0vw'
         },
         {
           name: 'todolist_background',
           img: require('@/assets/entry/todolist_background.png'),
           text: '<b>Step01自覺： </b><br>紀錄自己的使用習慣。從記錄當中找到自己的問題。根據問題規劃執行目標。<br><br><b>Step02 規劃： </b><br>設定自己能負荷的階段性小目標和最終目標，並限制自己在時間內執行目標。<br><br><b>Step03 測試： </b><br>執行規劃中的目標，並記錄每一次的執行情況，持續觀察約2~4週。<br><br><b>Step04 修正： </b><br>執行一段時間後，將記錄拿出來觀察。若執行狀況差，則檢討失敗原因重新調整後再次執行。<br><br><b>Step05 達成科技平衡： </b><br>如果過程中順利，能夠持續執行，那麼，恭喜你!請繼續加油!，美好的成果正在等著你。',
-          width: '75%'
+          width: '75%',
+          top: '0vh',
+          left: '0vw'
         },
         {
           name: 'plant_background',
           img: require('@/assets/entry/plant_background.png'),
-          width: '70%'
+          width: '70%',
+          top: '0vh',
+          left: '0vw'
         },
         {
           name: 'mug_background',
           img: require('@/assets/entry/mug_background.png'),
-          width: '60%'
+          text(){
+            let drawList = ['今天還是好星報', '初一十五看月亮']
+            console.log(Math.round(Math.random()*2))
+            return drawList[Math.round(Math.random()*2)-1]
+          },
+          width: '60%',
+          top: '10vh',
+          left: '10vw'
         }
       ]
     }
@@ -135,9 +148,13 @@ export default {
       this.isShowDetail = true
       let detailBackgroundData = this.detailBackground[number]
       let detailBackgroundId = document.getElementById('detailBackground')
-
+      let detailTextId = document.getElementById('detailText')
+      
       detailBackgroundId.src = detailBackgroundData.img
       detailBackgroundId.style.width = detailBackgroundData.width
+      detailTextId.style.top = detailBackgroundData.top
+      detailTextId.style.left = detailBackgroundData.left
+
       $('#detailText').html('')
       $('#detailText').html(detailBackgroundData.text)
     }
@@ -322,6 +339,7 @@ $(function() {
         width: 100%
         z-index: 10
       #detailText
+        position: relative
         width: 55vw
         height: 65vh
         z-index: 11
