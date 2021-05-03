@@ -14,11 +14,12 @@
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList); playAudio(sound.click)")
       .title(v-html="currentTableList.name")
       .message(v-html="currentTableList.detail")
+      img.warningSign(src="../assets/entry/inside_Screen/warning.png" v-show="currentTableList.isWarning")
       .checkArea(v-show="currentTableList.isNeedCheck")
-        .checkButton.checkYes
+        .checkButton.checkYes(@click="checkYesOrNo(currentTableList, true); playAudio(sound.click)")
           img(src="../assets/entry/inside_Screen/checkButton.png")
           .text 是(Y)
-        .checkButton.checkNo
+        .checkButton.checkNo(@click="checkYesOrNo(currentTableList, false); playAudio(sound.click)")
           img(src="../assets/entry/inside_Screen/checkButton.png")
           .text 否(N)
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
@@ -49,7 +50,7 @@ export default {
           thumbnail: require('@/assets/entry/inside_Screen/PC.png'),
           detail: '網路和科技是這時代的趨勢，無痛戒斷的目的是為了<b>『取得生活和科技之間的平衡』</b>，而不是拒絕數位科技，所以當發現生活出了問題時，就需要養成一個新的習慣回歸舒適的生活模式。',
           show: false,
-          isFullWindow: false
+          isFullWindow: false,
         },
         {
           number: '2',
@@ -60,7 +61,7 @@ export default {
           detail: '這裡是檔案總管，你確定你要擅闖這個禁區嗎？',
           show: false,
           isFullWindow: false,
-          isNeedCheck: true
+          isNeedCheck: true,
         },
         {
           number: '3',
@@ -70,7 +71,7 @@ export default {
           thumbnail: require('@/assets/entry/inside_Screen/RecycleBin.png'),
           detail: '這是回收桶',
           show: false,
-          isFullWindow: false
+          isFullWindow: false,
         },
         {
           number: '4',
@@ -80,7 +81,7 @@ export default {
           thumbnail: require('@/assets/entry/inside_Screen/health.png'),
           detail: '<h4><b>繼續沉迷的風險是…?</b></h4><br>使用網路本身並非壞事，善加利用反而能透過網路獲得更多學習資源。倘若出現以下三種情況可能要小心有成癮的可能:<br><br>1.無意識強迫自己使用無意識的去使用網路，或使用的時間比自己預期的多出很多，簡單地說就是「停不下來」。<br><br>2.心理不滿足隨著成癮的程度越高，你會需要更多的網路使用時間，才能達到一樣的爽快的效果。<br><br>3.戒斷症狀當別人強迫你不能使用網路時，身體會出現一些劇烈的生理反應，比方說煩躁、容易發怒、注意力不集中、四肢無力、憂鬱、焦慮等等，這些生／心理反應我們就稱之為戒斷症狀。',
           show: false,
-          isFullWindow: false
+          isFullWindow: false,
         },
         {
           number: '5',
@@ -90,7 +91,7 @@ export default {
           thumbnail: require('@/assets/entry/inside_Screen/disability.png'),
           detail: '<h4><b>成癮之後可能出現的問題…?</b></h4><br>長久看著螢幕容易使眼睛近視，而成癮的人有很大的機率因此生活步調混亂，常態性的沒睡好、沒吃好，最終營養不良導致身體出現病痛，久而久之影響心理狀態變得憂鬱，甚至抗拒出門與人接觸，長久下來形成惡性循環，急需改變。',
           show: false,
-          isFullWindow: false
+          isFullWindow: false,
         },
         {
           number: '6',
@@ -100,9 +101,21 @@ export default {
           thumbnail: require('@/assets/entry/inside_Screen/society.png'),
           detail: '社交障礙',
           show: false,
-          isFullWindow: false
+          isFullWindow: false,
         },
       ],
+      warnMessage: {
+          number: '7',
+          name: '警告',
+          img: require('@/assets/entry/inside_Screen/warning.png'),
+          window: require('@/assets/entry/inside_Screen/window_question.png'),
+          thumbnail: require('@/assets/entry/inside_Screen/warning.png'),
+          detail: '你再不後退，我就要叫了哦！',
+          show: false,
+          isFullWindow: false,
+          isNeedCheck: true,
+          isWarning: true
+        },
       sound: {
         click: require('@/assets/sound/click.mp3'),
         doubleClick: require('@/assets/sound/double_clicks.mp3'),
@@ -117,6 +130,7 @@ export default {
       screenOpacityAlt: 0.2,
       isPanelOpen: false,
       zIndexCount: 1,
+      warnCount: 1,
 
       // 藍屏設定
       blueScreen: {
@@ -176,6 +190,28 @@ export default {
       this.isThumbnail = true
       // $('.pop_up_window').toggle()
     },
+    checkYesOrNo(currentTableList, value){
+      this.warnCount ++
+      if(value && this.warnCount>3){
+        this.popUpBlueScreen()
+      }
+      if(value){
+        this.showDetail(this.warnMessage)
+        this.zoomInDetail(this.warnMessage)
+      }
+      else{
+        this.currentTableLists.filter((item)=>{
+          if (item === currentTableList)
+            this.closeDetail(item)
+        })
+      }
+    },
+    altMessagePosition(currentTableList){
+      console.log('I am work.')
+      this.$nextTick(()=>{
+        $('#PopUpWindow'+currentTableList.number+' .message').css({'width': '60%','left': '30%', 'top': '35%'})
+      })
+    },
     playAudio(sound){
       const audio = document.createElement('audio')
       audio.src = sound
@@ -206,6 +242,9 @@ export default {
       $('#thumbnail'+currentTableList.number).css('border-bottom', '1.5px solid rgba(30, 100, 100, 0.8)')
       $('#PopUpWindow'+currentTableList.number).show().css('z-index', this.zIndexCount)
       
+      if(currentTableList.isWarning)
+        this.altMessagePosition(currentTableList)
+
       let _this = this
       if(currentTableList.isFullWindow)
         _this.currentTableLists.filter(function (item) {
@@ -309,17 +348,22 @@ export default {
       this.currentTableLists = []
       this.blueScreen.isBlueScreen = false
       this.blueScreen.canShowBlueScreen = false
+      this.zIndexCount = 1
+      this.warnCount = 1
     },
     blueScreenTimeCount(){
       setTimeout(() => {
         if(this.blueScreen.canShowBlueScreen){
-          this.blueScreen.isBlueScreen = true
-          this.playAudio(this.sound.windowShutdown)
-          setTimeout(() => {
-            this.shuDownScreen()
-          }, this.blueScreen.blueScreenWaitTime*1000);
+          this.popUpBlueScreen()
         }
       }, this.blueScreen.blueScreenShowTime*1000);
+    },
+    popUpBlueScreen(){
+      this.blueScreen.isBlueScreen = true
+      this.playAudio(this.sound.windowShutdown)
+      setTimeout(() => {
+        this.shuDownScreen()
+      }, this.blueScreen.blueScreenWaitTime*1000);
     }
   }
 }
@@ -425,11 +469,16 @@ export default {
         text-align: left
         color: #222
         overflow-y: scroll
+      .warningSign
+        position: absolute
+        left: 10%
+        top: 25%
+        width: 15%
       .checkArea
         position: absolute
         width: 80%
         height: 20%
-        bottom: 20%
+        bottom: 18%
         left: 50%
         transform: translate(-50%)
         .checkButton
@@ -446,6 +495,7 @@ export default {
           img
             width: 100%
           .text
+            font-weight: bold
             z-index: 1000
         .checkYes
           left: 10%
