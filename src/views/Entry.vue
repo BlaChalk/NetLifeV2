@@ -67,7 +67,7 @@ export default {
         {
           name: 'plant_background',
           img: require('@/assets/entry/plant_background.png'),
-          text: '你今天網路使用過多了嗎？<br><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="'+ require('@/assets/entry/catShock.png') +'" style="width: 40vw"></img><br><br><br><br><br><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp不如接觸一下自然，轉換心情吧？',
+          text: '你今天網路使用過多了嗎？<br><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<img src="'+ require('@/assets/entry/catShock.png') +'" style="width: 40vw"></img><br><br><br><br><br><br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp不如接觸一下自然，轉換心情吧？',
           width: '70%',
           top: '0vh',
           left: '0vw',
