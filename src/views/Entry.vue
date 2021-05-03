@@ -26,6 +26,7 @@
     img.mug(src="../assets/entry/mug.png" @click="getDetailBackground(3)")
     .showDetail(v-show="isShowDetail" @click="isShowDetail=false")
       img#detailBackground
+      #detailText
     Table(ref="table" :windowSize="windowSize" @windowZoomIn="selfZoomIn" @reStartScreen="zoomInScreen" @shuDownScreen="closeScreenAndZoomOut")
     //- Nav
 </template>
@@ -45,12 +46,12 @@ export default {
         {
           name: 'photoFrame_background',
           img: require('@/assets/entry/photoFrame_background.png'),
-          altCss: '{"width": "50%"}',
           width: '46%'
         },
         {
           name: 'todolist_background',
           img: require('@/assets/entry/todolist_background.png'),
+          text: '<b>Step01自覺： </b><br>紀錄自己的使用習慣。從記錄當中找到自己的問題。根據問題規劃執行目標。<br><br><b>Step02 規劃： </b><br>設定自己能負荷的階段性小目標和最終目標，並限制自己在時間內執行目標。<br><br><b>Step03 測試： </b><br>執行規劃中的目標，並記錄每一次的執行情況，持續觀察約2~4週。<br><br><b>Step04 修正： </b><br>執行一段時間後，將記錄拿出來觀察。若執行狀況差，則檢討失敗原因重新調整後再次執行。<br><br><b>Step05 達成科技平衡： </b><br>如果過程中順利，能夠持續執行，那麼，恭喜你!請繼續加油!，美好的成果正在等著你。',
           width: '75%'
         },
         {
@@ -132,11 +133,13 @@ export default {
     },
     getDetailBackground(number){
       this.isShowDetail = true
-      let altCss = this.detailBackground[number].altCss
-      console.log(this.detailBackground[number].altCss)
-      document.getElementById('detailBackground').src = this.detailBackground[number].img
-      document.getElementById('detailBackground').style.width = this.detailBackground[number].width
-      // $('#detailBackground').css(altCss)
+      let detailBackgroundData = this.detailBackground[number]
+      let detailBackgroundId = document.getElementById('detailBackground')
+
+      detailBackgroundId.src = detailBackgroundData.img
+      detailBackgroundId.style.width = detailBackgroundData.width
+      $('#detailText').html('')
+      $('#detailText').html(detailBackgroundData.text)
     }
   }
 }
@@ -318,4 +321,16 @@ $(function() {
       #detailBackground
         width: 100%
         z-index: 10
+      #detailText
+        width: 55vw
+        height: 65vh
+        z-index: 11
+        font-size: 28px
+        text-align: left
+        overflow-y: scroll
+      ::-webkit-scrollbar
+        width: 18px
+      ::-webkit-scrollbar-thumb
+        background-color: rgba(0, 0, 0, 0.5)
+        border-radius: 10px
 </style>
