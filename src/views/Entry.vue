@@ -213,6 +213,7 @@ $(function() {
       left: -200%
       top: 80%
     .window
+      opacity: 0.75
       width: 150%
       left: 100%
       top: -120%
