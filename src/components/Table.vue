@@ -2,16 +2,17 @@
   #table
     .login
       img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
-      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin(); playAudio(sound.windowOriginBoot)")
+      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin(); playAudio(sound.window7Boot)")
     .cover(v-for="tableList in tableLists")
       img.icon(:src="tableList.img" @dblclick="showDetail(tableList); zoomInDetail(tableList); playAudio(sound.doubleClick)")
       .name {{ tableList.name }}
     .pop_up_window(:id="'PopUpWindow'+currentTableList.number" v-for="currentTableList in currentTableLists")
-      img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
+      img.window_simple(:src="currentTableList.window" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
         img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail(currentTableList); playAudio(sound.click)")
         img.o(src="../assets/entry/inside_Screen/o.svg" @click="currentTableList.isFullWindow ? unFullDetailWindow(currentTableList) : fullDetailWindow(currentTableList); playAudio(sound.click)")
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList); playAudio(sound.click)")
+      .title(v-html="currentTableList.name")
       .message(v-html="currentTableList.detail")
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
     .thumbnailList(v-show="isThumbnail")
@@ -37,6 +38,7 @@ export default {
           number: '1',
           name: '本機',
           img: require('@/assets/entry/inside_Screen/PC.png'),
+          window: require('@/assets/entry/inside_Screen/window_simple.png'),
           thumbnail: require('@/assets/entry/inside_Screen/PC.png'),
           detail: '網路和科技是這時代的趨勢，無痛戒斷的目的是為了<b>『取得生活和科技之間的平衡』</b>，而不是拒絕數位科技，所以當發現生活出了問題時，就需要養成一個新的習慣回歸舒適的生活模式。',
           show: false,
@@ -46,6 +48,7 @@ export default {
           number: '2',
           name: '檔案總管',
           img: require('@/assets/entry/inside_Screen/folder.png'),
+          window: require('@/assets/entry/inside_Screen/window_question.png'),
           thumbnail: require('@/assets/entry/inside_Screen/folder.png'),
           detail: '這是總管',
           show: false,
@@ -55,6 +58,7 @@ export default {
           number: '3',
           name: '資源回收桶',
           img: require('@/assets/entry/inside_Screen/RecycleBin.png'),
+          window: require('@/assets/entry/inside_Screen/window_simple.png'),
           thumbnail: require('@/assets/entry/inside_Screen/RecycleBin.png'),
           detail: '這是回收桶',
           show: false,
@@ -64,6 +68,7 @@ export default {
           number: '4',
           name: '身心健康',
           img: require('@/assets/entry/inside_Screen/health.png'),
+          window: require('@/assets/entry/inside_Screen/window_simple.png'),
           thumbnail: require('@/assets/entry/inside_Screen/health.png'),
           detail: '<h4><b>繼續沉迷的風險是…?</b></h4><br>使用網路本身並非壞事，善加利用反而能透過網路獲得更多學習資源。倘若出現以下三種情況可能要小心有成癮的可能:<br><br>1.無意識強迫自己使用無意識的去使用網路，或使用的時間比自己預期的多出很多，簡單地說就是「停不下來」。<br><br>2.心理不滿足隨著成癮的程度越高，你會需要更多的網路使用時間，才能達到一樣的爽快的效果。<br><br>3.戒斷症狀當別人強迫你不能使用網路時，身體會出現一些劇烈的生理反應，比方說煩躁、容易發怒、注意力不集中、四肢無力、憂鬱、焦慮等等，這些生／心理反應我們就稱之為戒斷症狀。',
           show: false,
@@ -73,6 +78,7 @@ export default {
           number: '5',
           name: '生活失能',
           img: require('@/assets/entry/inside_Screen/disability.png'),
+          window: require('@/assets/entry/inside_Screen/window_simple.png'),
           thumbnail: require('@/assets/entry/inside_Screen/disability.png'),
           detail: '<h4><b>成癮之後可能出現的問題…?</b></h4><br>長久看著螢幕容易使眼睛近視，而成癮的人有很大的機率因此生活步調混亂，常態性的沒睡好、沒吃好，最終營養不良導致身體出現病痛，久而久之影響心理狀態變得憂鬱，甚至抗拒出門與人接觸，長久下來形成惡性循環，急需改變。',
           show: false,
@@ -82,6 +88,7 @@ export default {
           number: '6',
           name: '社交障礙',
           img: require('@/assets/entry/inside_Screen/society.png'),
+          window: require('@/assets/entry/inside_Screen/window_simple.png'),
           thumbnail: require('@/assets/entry/inside_Screen/society.png'),
           detail: '社交障礙',
           show: false,
@@ -220,6 +227,7 @@ export default {
         top: 0,
         opacity: 1,
       })
+      $('#PopUpWindow'+currentTableList.number+' .title').css({'font-size':'24px'})
       $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'28%', 'height':'60%','font-size':'24px'})
       $('#PopUpWindow'+currentTableList.number+' .message h4').css({'font-size':'42px'})
       $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'17vw', 'right':'0.4%', 'top':'1%'})
@@ -385,6 +393,15 @@ export default {
       .window_simple
         position: relative
         width: 100%
+      .title
+        position: absolute
+        width: 20%
+        left: 3%
+        top: 3%
+        font-size: $font-size
+        // font-weight: bold
+        color: white
+        text-shadow: 1px 1px 5px black
       .message
         opacity: 0
         position: absolute
