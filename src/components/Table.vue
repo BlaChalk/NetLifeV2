@@ -2,26 +2,26 @@
   #table
     .login
       img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
-      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin()")
+      img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin(); playAudio(sound.click)")
     .cover(v-for="tableList in tableLists")
-      img.icon(:src="tableList.img" @dblclick="showDetail(tableList); zoomInDetail(tableList)")
+      img.icon(:src="tableList.img" @dblclick="showDetail(tableList); zoomInDetail(tableList); playAudio(sound.doubleClick)")
       .name {{ tableList.name }}
     .pop_up_window(:id="'PopUpWindow'+currentTableList.number" v-for="currentTableList in currentTableLists")
       img.window_simple(src="../assets/entry/inside_Screen/window_simple.png" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
-        img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail(currentTableList)")
-        img.o(src="../assets/entry/inside_Screen/o.svg" @click="currentTableList.isFullWindow ? unFullDetailWindow(currentTableList) : fullDetailWindow(currentTableList)")
-        img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList)")
+        img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail(currentTableList); playAudio(sound.click)")
+        img.o(src="../assets/entry/inside_Screen/o.svg" @click="currentTableList.isFullWindow ? unFullDetailWindow(currentTableList) : fullDetailWindow(currentTableList); playAudio(sound.click)")
+        img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList); playAudio(sound.click)")
       .message(v-html="currentTableList.detail")
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
     .thumbnailList(v-show="isThumbnail")
       .openedThumbnail(:id="'thumbnail'+currentTableList.number" v-for="(currentTableList, key) in currentTableLists")
-        img(:src="currentTableList.thumbnail" @click="showDetail(currentTableList); currentTableList.show ? zoomOutDetail(currentTableList) : zoomInDetail(currentTableList)")
+        img(:src="currentTableList.thumbnail" @click="showDetail(currentTableList); currentTableList.show ? zoomOutDetail(currentTableList) : zoomInDetail(currentTableList); playAudio(sound.click)")
     .startFunction(v-show="isPanelOpen")
       img.start_panel(src="../assets/entry/inside_Screen/start_panel.png")
-      img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen()")
-      img.turnOffButton.shutDown(src="../assets/entry/inside_Screen/shutDown.png" @click="shuDownScreen()")
-    .start_button(@click="isPanelOpen=!isPanelOpen")
+      img.turnOffButton.reStart(src="../assets/entry/inside_Screen/reStart.png" @click="reStartScreen(); playAudio(sound.click)")
+      img.turnOffButton.shutDown(src="../assets/entry/inside_Screen/shutDown.png" @click="shuDownScreen(); playAudio(sound.click)")
+    .start_button(@click="isPanelOpen=!isPanelOpen; playAudio(sound.click)")
     img.blueScreen(src="../assets/entry/inside_Screen/blueScreen.png" v-show="blueScreen.isBlueScreen")
       
 </template>
@@ -88,6 +88,11 @@ export default {
           isFullWindow: false
         },
       ],
+      sound: {
+        click: require('@/assets/sound/click.mp3'),
+        doubleClick: require('@/assets/sound/double_clicks.mp3'),
+        windowShutdown: require('@/assets/sound/windows_shutdown.mp3')
+      },
       currentTableLists: [],
       isThumbnail: true,
       tableZoomIn: 150,
@@ -152,6 +157,11 @@ export default {
       })
       this.isThumbnail = true
       // $('.pop_up_window').toggle()
+    },
+    playAudio(sound){
+      const audio = document.createElement('audio')
+      audio.src = sound
+      audio.play()
     },
     zoomOutDetail(currentTableList){
       currentTableList.show = false
@@ -280,6 +290,7 @@ export default {
       setTimeout(() => {
         if(this.blueScreen.canShowBlueScreen){
           this.blueScreen.isBlueScreen = true
+          this.playAudio(this.sound.windowShutdown)
           setTimeout(() => {
             this.shuDownScreen()
           }, this.blueScreen.blueScreenWaitTime*1000);
