@@ -309,7 +309,7 @@ export default {
       left: 4vw
       width: 12%
       margin-top: 5%
-      cursor: url(~@/assets/pointer.png), pointer
+      // cursor: url(~@/assets/pointer.png), pointer
       &:hover
         background-color: rgba(white, 0.3)
       .icon
@@ -357,6 +357,11 @@ export default {
         text-align: left
         color: #222
         overflow-y: scroll
+      ::-webkit-scrollbar
+        width: 15px
+      ::-webkit-scrollbar-thumb
+        background-color: rgba(0, 0, 0, 0.5)
+        // border-radius: 10px
     .toolbox
       display: none
       position: absolute
