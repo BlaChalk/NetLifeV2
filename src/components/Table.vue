@@ -14,6 +14,13 @@
         img.x(src="../assets/entry/inside_Screen/x.svg" @click="closeDetail(currentTableList); playAudio(sound.click)")
       .title(v-html="currentTableList.name")
       .message(v-html="currentTableList.detail")
+      .checkArea(v-show="currentTableList.isNeedCheck")
+        .checkButton.checkYes
+          img(src="../assets/entry/inside_Screen/checkButton.png")
+          .text 是(Y)
+        .checkButton.checkNo
+          img(src="../assets/entry/inside_Screen/checkButton.png")
+          .text 否(N)
     img.toolbox(src="../assets/entry/inside_Screen/toolbox.png")
     .thumbnailList(v-show="isThumbnail")
       .openedThumbnail(:id="'thumbnail'+currentTableList.number" v-for="(currentTableList, key) in currentTableLists")
@@ -50,9 +57,10 @@ export default {
           img: require('@/assets/entry/inside_Screen/folder.png'),
           window: require('@/assets/entry/inside_Screen/window_question.png'),
           thumbnail: require('@/assets/entry/inside_Screen/folder.png'),
-          detail: '這是總管',
+          detail: '這裡是檔案總管，你確定你要擅闖這個禁區嗎？',
           show: false,
-          isFullWindow: false
+          isFullWindow: false,
+          isNeedCheck: true
         },
         {
           number: '3',
@@ -114,7 +122,7 @@ export default {
       blueScreen: {
         isBlueScreen: false,
         canShowBlueScreen: true,
-        blueScreenShowTime: 60, // 設定藍屏啟動時間
+        blueScreenShowTime: 300, // 設定藍屏啟動時間
         blueScreenWaitTime: 8 // 藍屏持續時間 
       }
     };
@@ -417,6 +425,32 @@ export default {
         text-align: left
         color: #222
         overflow-y: scroll
+      .checkArea
+        position: absolute
+        width: 80%
+        height: 20%
+        bottom: 20%
+        left: 50%
+        transform: translate(-50%)
+        .checkButton
+          display: flex
+          justify-content: center
+          align-items: center
+          position: absolute
+          opacity: 0.7
+          width: 30%
+          height: 100%
+          &:hover
+            cursor: url(~@/assets/pointer.png), pointer
+            opacity: 1
+          img
+            width: 100%
+          .text
+            z-index: 1000
+        .checkYes
+          left: 10%
+        .checkNo
+          right: 10%
       ::-webkit-scrollbar
         width: 15px
       ::-webkit-scrollbar-thumb
