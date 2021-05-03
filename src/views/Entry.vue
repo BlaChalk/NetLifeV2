@@ -7,7 +7,7 @@
       .button
         img.down(src="../assets/entry/down.png" @click="setScreenOpacityDown()")
         img.up(src="../assets/entry/up.png"  @click="setScreenOpacityUp()")
-        img.menu(src="../assets/entry/menu.png")
+        img.menu(src="../assets/entry/menu.png" @click="switchMenu()")
         img.screen_button(src="../assets/entry/screen_button.png" @click="closeScreenAndZoomOut()")
       img.keyboard(src="../assets/entry/keyboard.png")
       img.mouse(src="../assets/entry/mouse.png")
@@ -122,6 +122,9 @@ export default {
     },
     setScreenOpacityDown(){
       this.$refs.table.screenOpacityDown()
+    },
+    switchMenu(){
+      this.$refs.table.switchMenu()
     },
     closeScreenAndZoomOut(){
       $('.button').hide().css('opacity', '0')

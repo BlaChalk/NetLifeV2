@@ -1,5 +1,7 @@
 <template lang="pug">
   #table
+    .menu(v-show="isMenuOpen")
+      img(src="../assets/entry/inside_Screen/menu_show.png")
     .login
       img.user_sticker(src="../assets/entry/inside_Screen/user_sticker.png")
       img.login_button(src="../assets/entry/inside_Screen/login_button.png" @click="showTable(); hideLogin(); playAudio(sound.window7Boot)")
@@ -70,7 +72,7 @@ export default {
           img: require('@/assets/entry/inside_Screen/RecycleBin.png'),
           window: require('@/assets/entry/inside_Screen/window_simple.png'),
           thumbnail: require('@/assets/entry/inside_Screen/RecycleBin.png'),
-          detail: '這是回收桶',
+          detail: '好棒哦！這裡什麼都沒有耶~~',
           show: false,
           isFullWindow: false,
         },
@@ -111,7 +113,7 @@ export default {
           img: require('@/assets/entry/inside_Screen/warning.png'),
           window: require('@/assets/entry/inside_Screen/window_question.png'),
           thumbnail: require('@/assets/entry/inside_Screen/warning.png'),
-          detail: '我從內碼看到你不是這台電腦的主人，你再不後退，我就要叫了哦?',
+          detail: '我從內碼看到你不是這台電腦的主人，你再不後退，我就要叫了哦！你確定不後退嗎？',
           show: false,
           isFullWindow: false,
           isNeedCheck: true,
@@ -142,6 +144,7 @@ export default {
       tableZoomIn: 150,
       screenOpacityAlt: 0.2,
       isPanelOpen: false,
+      isMenuOpen: false,
       zIndexCount: 1,
       warnCount: 1,
 
@@ -344,6 +347,9 @@ export default {
         })
       }
     },
+    switchMenu(){
+      this.isMenuOpen = !this.isMenuOpen
+    },
     turnOffScreen(){
       $('#table').hide()
       this.hideLogin()
@@ -405,6 +411,16 @@ export default {
     width: 60%
     height: 45%
     background-color: rgba(white, 0.1)
+    .menu
+      position: absolute
+      width: 100%
+      height: 100%
+      z-index: 10
+      img
+        width: 80%
+        left: 50%
+        top: 50%
+        transform: translate(-50%, -50%)
     .login
       width: 100%
       height: 100%
