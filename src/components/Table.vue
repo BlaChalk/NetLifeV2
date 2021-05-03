@@ -179,8 +179,9 @@ export default {
       this.$nextTick(()=>{
         TweenMax.to('#PopUpWindow'+currentTableList.number, 0.8, {
           left: 40 + '%',
-          top: 90 + '%',
+          top: 95 + '%',
           width: 5 + '%',
+          height: 3 + '%',
           opacity: 0,
           ease: Power2.out
         })
@@ -227,8 +228,9 @@ export default {
         top: 0,
         opacity: 1,
       })
+      $('#PopUpWindow'+currentTableList.number+' .windowBackground').css({'height':'100%'})
       $('#PopUpWindow'+currentTableList.number+' .title').css({'font-size':'24px'})
-      $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'28%', 'height':'60%','font-size':'24px'})
+      $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'28%', 'height':'52%','font-size':'24px'})
       $('#PopUpWindow'+currentTableList.number+' .message h4').css({'font-size':'42px'})
       $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'17vw', 'right':'0.4%', 'top':'1%'})
       $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'2vw', 'height':'2vw', 'margin':'0.8vw 1.15vw'})
@@ -240,11 +242,14 @@ export default {
           left: 10+Math.random()*10 + '%',
           top: 10+Math.random()*10 + '%',
           width: 70 + '%',
+          height: 80 + '%',
           opacity: 1,
           ease: Power2.out,
         })
       })
-      $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'13vh', 'height':'42%','font-size':'18px'})
+      $('#PopUpWindow'+currentTableList.number+' .windowBackground').css({'height':'100%'})
+      $('#PopUpWindow'+currentTableList.number+' .title').css({'top':'2%', 'font-size':'18px'})
+      $('#PopUpWindow'+currentTableList.number+' .message').css({'top':'25%', 'height':'54%','font-size':'18px'})
       $('#PopUpWindow'+currentTableList.number+' .message h4').css({'font-size':'24px'})
       $('#PopUpWindow'+currentTableList.number+' .features').css({'width':'12vw', 'right':'0%', 'top':'0%'})
       $('#PopUpWindow'+currentTableList.number+' .features').children().css({'width':'1.5vw', 'height':'1.5vw', 'margin':'0.8vw 0.75vw'})
@@ -390,23 +395,22 @@ export default {
             cursor: url(~@/assets/pointer.png), pointer
         .x:hover
           background-color: #DD1155
-      .window_simple
+      .windowBackground
         position: relative
         width: 100%
+        height: 100%
       .title
         position: absolute
-        width: 20%
         left: 3%
         top: 3%
         font-size: $font-size
-        // font-weight: bold
         color: white
         text-shadow: 1px 1px 5px black
       .message
         opacity: 0
         position: absolute
         width: 80%
-        height: 53%
+        height: 54%
         left: 10%
         top: 25%
         font-size: $font-size
