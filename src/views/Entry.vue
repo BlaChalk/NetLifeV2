@@ -48,7 +48,11 @@ export default {
           img: require('@/assets/entry/photoFrame_background.png'),
           width: '46%',
           top: '0vh',
-          left: '0vw'
+          left: '0vw',
+          textWidth: '40vw',
+          textHeight: '55vh',
+          textTop: '15vh',
+          textLeft: '0vw',
         },
         {
           name: 'todolist_background',
@@ -56,25 +60,34 @@ export default {
           text: '<b>Step01自覺： </b><br>紀錄自己的使用習慣。從記錄當中找到自己的問題。根據問題規劃執行目標。<br><br><b>Step02 規劃： </b><br>設定自己能負荷的階段性小目標和最終目標，並限制自己在時間內執行目標。<br><br><b>Step03 測試： </b><br>執行規劃中的目標，並記錄每一次的執行情況，持續觀察約2~4週。<br><br><b>Step04 修正： </b><br>執行一段時間後，將記錄拿出來觀察。若執行狀況差，則檢討失敗原因重新調整後再次執行。<br><br><b>Step05 達成科技平衡： </b><br>如果過程中順利，能夠持續執行，那麼，恭喜你!請繼續加油!，美好的成果正在等著你。',
           width: '75%',
           top: '0vh',
-          left: '0vw'
+          left: '0vw',
+          textWidth: '55vw',
+          textHeight: '65vh',
         },
         {
           name: 'plant_background',
           img: require('@/assets/entry/plant_background.png'),
           width: '70%',
           top: '0vh',
-          left: '0vw'
+          left: '0vw',
+          textWidth: '55vw',
+          textHeight: '65vh',
+          textTop: '5vh',
         },
         {
           name: 'mug_background',
           img: require('@/assets/entry/mug_background.png'),
           text(){
-            let drawList = ['今天還是好星報', '初一十五看月亮']
-            return drawList[parseInt(Math.random()*2)]
+            let drawList = ['蹲得越低腳越麻', '初一十五看月亮']
+            return drawList[parseInt(Math.random()*drawList.length)]
           },
           width: '60%',
           top: '10vh',
-          left: '10vw'
+          left: '10vw',
+          textWidth: '30vw',
+          textHeight: '30vh',
+          textTop: '-15vh',
+          textLeft: '-2vw',
         }
       ]
     }
@@ -84,7 +97,7 @@ export default {
     
   // },
   components: {
-      Table, Nav
+    Table, Nav
   },
   methods: {
     wheel(evt){
@@ -153,6 +166,10 @@ export default {
       detailBackgroundId.style.width = detailBackgroundData.width
       detailTextId.style.top = detailBackgroundData.top
       detailTextId.style.left = detailBackgroundData.left
+      detailTextId.style.width = detailBackgroundData.textWidth
+      detailTextId.style.height = detailBackgroundData.textHeight
+      detailTextId.style.top = detailBackgroundData.textTop
+      detailTextId.style.left = detailBackgroundData.textLeft
 
       $('#detailText').html('')
       $('#detailText').html(detailBackgroundData.text)
