@@ -7,7 +7,7 @@
       img.icon(:src="tableList.img" @dblclick="showDetail(tableList); zoomInDetail(tableList); playAudio(sound.doubleClick)")
       .name {{ tableList.name }}
     .pop_up_window(:id="'PopUpWindow'+currentTableList.number" v-for="currentTableList in currentTableLists")
-      img.window_simple(:src="currentTableList.window" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
+      img.windowBackground(:src="currentTableList.window" draggable="true" ondragstart="event.dataTransfer.setData('text/plain', 'This text may be dragged')")
       .features
         img.i(src="../assets/entry/inside_Screen/i.svg" @click="zoomOutDetail(currentTableList); playAudio(sound.click)")
         img.o(src="../assets/entry/inside_Screen/o.svg" @click="currentTableList.isFullWindow ? unFullDetailWindow(currentTableList) : fullDetailWindow(currentTableList); playAudio(sound.click)")
