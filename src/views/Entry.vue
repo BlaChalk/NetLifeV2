@@ -46,6 +46,7 @@ export default {
         {
           name: 'photoFrame_background',
           img: require('@/assets/entry/photoFrame_background.png'),
+          text: '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/KY.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">平面編輯</duty></block>' + '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/YL.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">網站美術／<br>影音／企劃</duty></block>' + '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/SY.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">網頁程式／企劃</duty></block>',
           width: '46%',
           top: '0vh',
           left: '0vw',
