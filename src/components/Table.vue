@@ -72,7 +72,7 @@ export default {
           img: require('@/assets/entry/inside_Screen/RecycleBin.png'),
           window: require('@/assets/entry/inside_Screen/window_simple.png'),
           thumbnail: require('@/assets/entry/inside_Screen/RecycleBin.png'),
-          detail: '好棒哦！這裡什麼都沒有耶~~',
+          detail: '<br><img src="' + require('@/assets/entry/inside_Screen/blackMan_No.png') + '" style="height: 70%"></img><br><br><br><br><br>你是否是數位產品使用者？<br>你是否發現自己的使用習慣影響到人生了呢？<br>你是否曾感覺到很絕望，甚至想回爐重造呢？<br>．．．<br>．．<br>．<br><br><img src="' + require('@/assets/entry/inside_Screen/blackMan_Yes.png') + '" style="height: 70%"></img><br><br><br><br><br>請不要擔心！資源回收桶絕對不是你的歸屬！<br>你需要的是養成數位健康的好方法！<br>從現在開始展開新的人生吧！',
           show: false,
           isFullWindow: false,
         },
@@ -163,7 +163,7 @@ export default {
         isBlueScreen: false,
         canShowBlueScreen: true,
         blueScreenShowTime: 30, // 設定藍屏啟動時間
-        blueScreenWaitTime: 8 // 藍屏持續時間 
+        blueScreenWaitTime: 5 // 藍屏持續時間 
       }
     };
   },
