@@ -42,6 +42,7 @@ export default {
       windowSize: [],
       isHoverScreen: false,
       isShowDetail: false,
+      zoomInShowTime: '30', // 跳回電腦螢幕前面時間 (秒)
       detailBackground: [
         {
           name: 'photoFrame_background',
@@ -130,6 +131,7 @@ export default {
     closeScreenAndZoomOut(){
       $('.button').hide().css('opacity', '0')
       this.$refs.table.turnOffScreen()
+      this.zoomInTimeCount()
       TweenMax.to('#entry', 0.8, {
         width: 35*(3/5) + 'vw' ,
         height: 35 + 'vh'
@@ -178,8 +180,14 @@ export default {
 
       $('#detailText').html('')
       $('#detailText').html(detailBackgroundData.text)
+    },
+    zoomInTimeCount(){
+      setTimeout(() => {
+        this.zoomInScreen()
+        this.isShowDetail = false
+      }, this.zoomInShowTime*1000);
     }
-  }
+  },
 }
 $(function() {
 
