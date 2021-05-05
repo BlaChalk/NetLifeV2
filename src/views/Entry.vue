@@ -42,12 +42,12 @@ export default {
       windowSize: [],
       isHoverScreen: false,
       isShowDetail: false,
-      zoomInShowTime: '30', // 跳回電腦螢幕前面時間 (秒)
+      zoomInShowTime: '60', // 跳回電腦螢幕前面時間 (秒)
       detailBackground: [
         {
           name: 'photoFrame_background',
           img: require('@/assets/entry/photoFrame_background.png'),
-          text: '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/KY.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">平面編輯</duty></block>' + '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/YL.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">網站美術／<br>影音／企劃</duty></block>' + '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/SY.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">網頁程式／企劃</duty></block>',
+          text: '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/KY.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">平面美編</duty></block>' + '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/YL.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">網站美術／<br>影音／企劃</duty></block>' + '<block style="display: flex; position: relative; width: 100%; height: 100%"><img style="position: absolute; height: 80%; top: 10%; left: 10%" src=' + require('@/assets/entry/SY.png') + '></img><duty style="position: absolute; top: 45%; right: 10%; color: white">網頁程式／企劃</duty></block>',
           width: '46%',
           top: '0vh',
           left: '0vw',
@@ -59,7 +59,7 @@ export default {
         {
           name: 'todolist_background',
           img: require('@/assets/entry/todolist_background.png'),
-          text: '<b>Step01自覺： </b><br>紀錄自己的使用習慣。從記錄當中找到自己的問題。根據問題規劃執行目標。<br><br><b>Step02 規劃： </b><br>設定自己能負荷的階段性小目標和最終目標，並限制自己在時間內執行目標。<br><br><b>Step03 測試： </b><br>執行規劃中的目標，並記錄每一次的執行情況，持續觀察約2~4週。<br><br><b>Step04 修正： </b><br>執行一段時間後，將記錄拿出來觀察。若執行狀況差，則檢討失敗原因重新調整後再次執行。<br><br><b>Step05 達成科技平衡： </b><br>如果過程中順利，能夠持續執行，那麼，恭喜你!請繼續加油!，美好的成果正在等著你。',
+          text: '<b>Step01自覺： </b><img src="' + require('@/assets/entry/todolist_aware.png') + '" style="height: 10%"></img><br>紀錄自己的使用習慣。從記錄當中找到自己的問題。根據問題規劃執行目標。<br><br><b>Step02 規劃： </b><img src="' + require('@/assets/entry/todolist_plan.png') + '" style="height: 10%"></img><br>設定自己能負荷的階段性小目標和最終目標，並限制自己在時間內執行目標。<br><br><b>Step03 測試： </b><img src="' + require('@/assets/entry/todolist_test.png') + '" style="height: 10%"></img><br>執行規劃中的目標，並記錄每一次的執行情況，持續觀察約2~4週。<br><br><b>Step04 修正： </b><img src="' + require('@/assets/entry/todolist_fix.png') + '" style="height: 10%"></img><br>執行一段時間後，將記錄拿出來觀察。若執行狀況差，則檢討失敗原因重新調整後再次執行。<br><br><b>Step05 達成科技平衡： </b><img src="' + require('@/assets/entry/todolist_balance.png') + '" style="height: 10%"></img><br>如果過程中順利，能夠持續執行，那麼，恭喜你!請繼續加油!，美好的成果正在等著你。',
           width: '75%',
           top: '0vh',
           left: '0vw',

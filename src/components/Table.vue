@@ -162,7 +162,7 @@ export default {
       blueScreen: {
         isBlueScreen: false,
         canShowBlueScreen: true,
-        blueScreenShowTime: 30, // 設定藍屏啟動時間
+        blueScreenShowTime: 100, // 設定藍屏啟動時間
         blueScreenWaitTime: 5 // 藍屏持續時間 
       }
     };
